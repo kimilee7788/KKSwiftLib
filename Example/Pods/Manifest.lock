@@ -1,0 +1,16 @@
+PODS:
+  - KKSwiftLib (0.1.0)
+
+DEPENDENCIES:
+  - KKSwiftLib (from `../`)
+
+EXTERNAL SOURCES:
+  KKSwiftLib:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  KKSwiftLib: 1d742493dcbdff9547afd2930f44e026c721d577
+
+PODFILE CHECKSUM: 4b7fe1fa98837a30fb740e8d158b3c2a66926562
+
+COCOAPODS: 1.10.1

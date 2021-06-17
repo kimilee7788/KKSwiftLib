@@ -30,7 +30,7 @@
 /* Begin PBXFileReference section */
 		01AFE678CA5DC046AD0BFE4C /* Pods-KKSwiftLib_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KKSwiftLib_Example.debug.xcconfig"; path = "Target Support Files/Pods-KKSwiftLib_Example/Pods-KKSwiftLib_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		43A65AF8981FC5C47D64A6BE /* Pods-KKSwiftLib_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KKSwiftLib_Example.release.xcconfig"; path = "Target Support Files/Pods-KKSwiftLib_Example/Pods-KKSwiftLib_Example.release.xcconfig"; sourceTree = "<group>"; };
-		4712744CEE2A84C829CD7FF2 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		4712744CEE2A84C829CD7FF2 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* KKSwiftLib_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KKSwiftLib_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -45,8 +45,8 @@
 		C27EC8262BB7F310A694C07F /* Pods_KKSwiftLib_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KKSwiftLib_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C44255A6C673BF5BA8211929 /* Pods-KKSwiftLib_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KKSwiftLib_Tests.release.xcconfig"; path = "Target Support Files/Pods-KKSwiftLib_Tests/Pods-KKSwiftLib_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		C657AAE57D893ED782F19F5F /* Pods-KKSwiftLib_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KKSwiftLib_Tests.debug.xcconfig"; path = "Target Support Files/Pods-KKSwiftLib_Tests/Pods-KKSwiftLib_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		C674ECCA37FA9ACB2296F8C7 /* KKSwiftLib.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = KKSwiftLib.podspec; path = ../KKSwiftLib.podspec; sourceTree = "<group>"; };
-		D84515FA75B1B3C006285925 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		C674ECCA37FA9ACB2296F8C7 /* KKSwiftLib.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = KKSwiftLib.podspec; path = ../KKSwiftLib.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		D84515FA75B1B3C006285925 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,7 +147,6 @@
 				C657AAE57D893ED782F19F5F /* Pods-KKSwiftLib_Tests.debug.xcconfig */,
 				C44255A6C673BF5BA8211929 /* Pods-KKSwiftLib_Tests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -227,6 +226,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);

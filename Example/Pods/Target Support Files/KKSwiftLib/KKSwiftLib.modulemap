@@ -1,0 +1,6 @@
+framework module KKSwiftLib {
+  umbrella header "KKSwiftLib-umbrella.h"
+
+  export *
+  module * { export * }
+}

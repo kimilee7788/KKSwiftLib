@@ -1,0 +1,6 @@
+framework module Pods_KKSwiftLib_Example {
+  umbrella header "Pods-KKSwiftLib_Example-umbrella.h"
+
+  export *
+  module * { export * }
+}

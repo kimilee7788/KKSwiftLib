@@ -1,0 +1,13 @@
+use_frameworks!
+
+platform :ios, '9.0'
+
+target 'KKSwiftLib_Example' do
+  pod 'KKSwiftLib', :path => '../'
+
+  target 'KKSwiftLib_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end

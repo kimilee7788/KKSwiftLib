@@ -1,6 +1,0 @@
-framework module Pods_KKSwiftLib_Tests {
-  umbrella header "Pods-KKSwiftLib_Tests-umbrella.h"
-
-  export *
-  module * { export * }
-}

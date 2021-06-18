@@ -15,7 +15,7 @@ public enum KMLayoutStyle : Int{
     KMLayoutHorizontalEqualWeight // 横向 等高不等宽 不支持header footer
     
 }
-@objc protocol KMCustomLayoutDelegate:NSObjectProtocol{
+public @objc protocol KMCustomLayoutDelegate:NSObjectProtocol{
     //竖直滚动生效
     @objc func KM_customLayoutSizeforItem(layout:KMCustomLayout,indexPath:IndexPath)->CGSize
     @objc func KM_customLayoutSizeForHeader(layout:KMCustomLayout,section:Int) -> CGSize
@@ -29,7 +29,7 @@ public enum KMLayoutStyle : Int{
     @objc optional func KM_customLayoutWithEdgeInset(layout:KMCustomLayout) -> UIEdgeInsets
     
 }
-class KMCustomLayout: UICollectionViewLayout {
+public class KMCustomLayout: UICollectionViewLayout {
     var layoutStyle:KMLayoutStyle
     //存放所有cell
     var attributes = [UICollectionViewLayoutAttributes]()

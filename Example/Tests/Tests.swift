@@ -1,6 +1,5 @@
 import XCTest
-import KKSwiftLib
-
+]
 class Tests: XCTestCase {
     
     override func setUp() {

@@ -9,7 +9,7 @@ import Foundation
 import WebKit
 import SnapKit
 
-class KMWebViewController: KMBaseViewController {
+public class KMWebViewController: KMBaseViewController {
     
     var webView:WKWebView?
     var url:String?

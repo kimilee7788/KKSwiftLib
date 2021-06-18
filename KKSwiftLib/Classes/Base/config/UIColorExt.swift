@@ -7,7 +7,7 @@
 
 import Foundation
 import UIKit
-extension UIColor{
+public extension UIColor{
     
     func dynamic(_ dark:String) -> UIColor{
         

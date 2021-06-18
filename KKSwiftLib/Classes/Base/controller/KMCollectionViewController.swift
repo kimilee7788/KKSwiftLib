@@ -8,7 +8,7 @@ import Foundation
 import UIKit
 import EmptyStateKit
 
-class KMCollectionViewController: KMBaseViewController,KMCustomLayoutDelegate, UICollectionViewDelegate, UICollectionViewDataSource {
+public class KMCollectionViewController: KMBaseViewController,KMCustomLayoutDelegate, UICollectionViewDelegate, UICollectionViewDataSource {
     
     var nodata = MainState.noInternet
     var noSearch = MainState.noSearch
@@ -20,7 +20,7 @@ class KMCollectionViewController: KMBaseViewController,KMCustomLayoutDelegate, U
         // Do any additional setup after loading the view.
     }
     
-    override func loadView() {
+    public override func loadView() {
         super.loadView()
         self.layout = KMCustomLayout.init(style: .KMLayoutVerticalEqualWidth)
         self.layout?.delegate = self
@@ -61,7 +61,7 @@ class KMCollectionViewController: KMBaseViewController,KMCustomLayoutDelegate, U
         
     }
 
-    override func KM_layoutConstraints() {
+    public override func KM_layoutConstraints() {
         super.KM_layoutConstraints()
         self.collectionView?.snp.makeConstraints { (make) in
             make.bottom.left.right.equalToSuperview()

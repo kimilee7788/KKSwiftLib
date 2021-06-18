@@ -8,15 +8,15 @@
 import Foundation
 import UIKit
 
-class KMView: UIView {
+public class KMView: UIView {
     
-    func layoutView(){
+    public func layoutView(){
     }
     
-    func loadView() {
+    public func loadView() {
     }
     
-    override init(frame: CGRect) {
+    public override init(frame: CGRect) {
         super.init(frame: frame)
         self.loadView()
         self.layoutView()
@@ -28,7 +28,7 @@ class KMView: UIView {
 }
 
 
-class KMLabel: UILabel {
+public class KMLabel: UILabel {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -41,7 +41,7 @@ enum KMButtonEdgeInsetsStyle {
     case KMButtonBottom
 }
 
-extension UIButton {
+public extension UIButton {
 
     func layoutButton(style: KMButtonEdgeInsetsStyle, imageTitleSpace: CGFloat) {
         //得到imageView和titleLabel的宽高
@@ -97,7 +97,7 @@ public enum KMNavButtonType {
     case left //图片在左 标题在右
     case right //图片在右。标题在左
 }
-class KMNavButton: KMControl {
+public class KMNavButton: KMControl {
 
     
     var navButtonSelected:Bool = false{
@@ -292,7 +292,7 @@ class KMNavButton: KMControl {
     }
 }
 
-class KMControl: UIControl {
+public class KMControl: UIControl {
     func loadViews() {
         self.translatesAutoresizingMaskIntoConstraints = false
         self.backgroundColor = UIColor.clear
@@ -312,7 +312,7 @@ class KMControl: UIControl {
 
 }
 
-class KMCollectionView: UICollectionView {
+public class KMCollectionView: UICollectionView {
     var isShouldRecognize:Bool = true
     var interfaceStyle:KMInterfaceStyle = .light{
         didSet{
@@ -345,7 +345,7 @@ class KMCollectionView: UICollectionView {
     }
 }
 
-class KMCollectionViewCell: UICollectionViewCell {
+public class KMCollectionViewCell: UICollectionViewCell {
     
     var interfaceStyle:KMInterfaceStyle = .light{
         didSet{
@@ -373,7 +373,7 @@ class KMCollectionViewCell: UICollectionViewCell {
     func KM_layoutConstraints(){}
 }
 
-class KMTableViewCell: UITableViewCell {
+public class KMTableViewCell: UITableViewCell {
     
     var interfaceStyle:KMInterfaceStyle = .light{
         didSet{
@@ -404,12 +404,12 @@ class KMTableViewCell: UITableViewCell {
 }
 
 
-enum KMBarButtonType {
+public enum KMBarButtonType {
     case KMBarButtonType_Image
     case KMBarButtonType_Circle
 }
 
-class KMBarModel{
+public class KMBarModel{
     
    convenience init(title:String,image:String) {
         self.init()
@@ -428,11 +428,11 @@ class KMBarModel{
     var type:KMBarButtonType = .KMBarButtonType_Image
 }
 
-@objc protocol KMBarViewProtocol {
+public @objc protocol KMBarViewProtocol {
   func clickBarButton(button:UIButton);
 }
 
-class KMBarView:KMView {
+public class KMBarView:KMView {
     
     weak var scrollView:UIScrollView?
     

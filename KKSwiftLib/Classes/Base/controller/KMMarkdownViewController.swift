@@ -7,7 +7,7 @@
 
 import Foundation
 import EFMarkdown
-class KMMarkdownViewController: KMBaseViewController {
+public class KMMarkdownViewController: KMBaseViewController {
     var markdownView:EFMarkdownView?
     
     override func KM_loadNavigationBar() {

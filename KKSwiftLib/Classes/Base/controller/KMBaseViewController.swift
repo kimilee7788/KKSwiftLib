@@ -8,7 +8,7 @@
 import Foundation
 import EmptyStateKit
 
-class KMBaseViewController: UIViewController,KMNavBarDelegate{
+public class KMBaseViewController: UIViewController,KMNavBarDelegate{
     
     deinit {
         print(NSStringFromClass(object_getClass(self) ?? KMBaseViewController.self)+"dealloc")
@@ -16,14 +16,14 @@ class KMBaseViewController: UIViewController,KMNavBarDelegate{
     
     weak var navBar:KMNavBar?
     
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
         self.KM_loadNavigationBar()
         self.KM_loadViews()
         self.KM_layoutConstraints()
     }
     
-    override var prefersStatusBarHidden: Bool{
+    public override var prefersStatusBarHidden: Bool{
         return false
     }
     
@@ -80,7 +80,7 @@ class KMBaseViewController: UIViewController,KMNavBarDelegate{
         return true
     }
     
-    override var preferredStatusBarStyle: UIStatusBarStyle{
+    public override var preferredStatusBarStyle: UIStatusBarStyle{
         return .default
     }
     
@@ -90,7 +90,7 @@ class KMBaseViewController: UIViewController,KMNavBarDelegate{
     func KM_layoutConstraints(){
         
     }
-    override func viewWillDisappear(_ animated: Bool) {
+    public override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.view.endEditing(true)
     }
@@ -163,7 +163,7 @@ class KMlistViewController: KMBaseViewController, UITableViewDataSource ,UITable
     var dataArray:Array<Any>?
     weak var tableView:UITableView?
     
-    override func KM_loadViews() {
+    public override func KM_loadViews() {
         super.KM_loadViews()
         do{
             let tb = UITableView.init()
@@ -186,7 +186,7 @@ class KMlistViewController: KMBaseViewController, UITableViewDataSource ,UITable
     }
 }
  
-class KMAlertController: UIAlertController {
+public class KMAlertController: UIAlertController {
      
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -219,7 +219,7 @@ class KMAlertController: UIAlertController {
 }
 
 
-class KMNavigationController: UINavigationController,UIGestureRecognizerDelegate,UINavigationControllerDelegate {
+public class KMNavigationController: UINavigationController,UIGestureRecognizerDelegate,UINavigationControllerDelegate {
     var interfaceStyle:KMInterfaceStyle = .light{
         didSet{
             

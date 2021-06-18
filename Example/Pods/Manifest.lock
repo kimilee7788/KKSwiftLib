@@ -3,33 +3,30 @@ PODS:
   - EFMarkdown (5.0.0):
     - EFCMark (= 0.0.2)
   - EmptyStateKit (1.1.0)
-  - KKSwiftLib (0.1.0):
+  - KKSwiftLib (0.1.1):
     - EFMarkdown
     - EmptyStateKit
     - SnapKit
-  - SnapKit (4.2.0)
+  - SnapKit (5.0.1)
 
 DEPENDENCIES:
-  - KKSwiftLib (from `../`)
+  - KKSwiftLib
 
 SPEC REPOS:
   trunk:
     - EFCMark
     - EFMarkdown
     - EmptyStateKit
+    - KKSwiftLib
     - SnapKit
-
-EXTERNAL SOURCES:
-  KKSwiftLib:
-    :path: "../"
 
 SPEC CHECKSUMS:
   EFCMark: 78fb32ed4107c8efc640ad9d20ac31cd44ce2046
   EFMarkdown: 915ff03080b95efcc737650991397322d661f1d9
   EmptyStateKit: dc41e9ce5c6089f67a49d063bce73ade9f2ba73f
-  KKSwiftLib: 4fd15a7bb4d3e6fdc620a5a54b2629765400e826
-  SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
+  KKSwiftLib: 266e7ecbf6be26f589d4515c7d62156409fcbe38
+  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
 
-PODFILE CHECKSUM: 4b7fe1fa98837a30fb740e8d158b3c2a66926562
+PODFILE CHECKSUM: 6a6b91b7665745c76cff2cb686fe2bf69480d0ee
 
 COCOAPODS: 1.10.1

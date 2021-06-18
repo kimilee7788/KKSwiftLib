@@ -16,21 +16,21 @@ import UIKit
 }
 
 
-class KMNavBar: KMView {
+open class KMNavBar: KMView {
     
   weak var delegate:(KMNavBarDelegate)?
 
-    weak var navBGView:KMView?
-    weak var backgroundImageView:UIImageView?
-    weak var navigationView:KMView?
-    weak var statusBarView:KMView?
-    weak var titleControl:UIControl?
-    weak var titleLabel:UILabel?
-    weak var leftButton:KMNavButton!
-    weak var rightButton:KMNavButton!
-    weak var separator:KMView!
+    weak open var navBGView:KMView?
+    weak open var backgroundImageView:UIImageView?
+    weak open var navigationView:KMView?
+    weak open var statusBarView:KMView?
+    weak open var titleControl:UIControl?
+    weak open var titleLabel:UILabel?
+    weak open var leftButton:KMNavButton!
+    weak open var rightButton:KMNavButton!
+    weak open var separator:KMView!
     
-    override func loadView() {
+    override open func loadView() {
         super.loadView()
     
         do {
@@ -98,7 +98,7 @@ class KMNavBar: KMView {
         
     }
     
-    override func layoutView() {
+    override open func layoutView() {
         super.layoutView()
         
         self.navBGView?.snp.makeConstraints({ (make) in
@@ -151,17 +151,17 @@ class KMNavBar: KMView {
         
     }
 
-    func setNavLeftTypeBack(){
+    open func setNavLeftTypeBack(){
         
         self.setNavLeftButton(title: "back", imageString: "", font: "15px_medium".font, color: UIColor.black, imagePositionType: .left, titleImageSpec: 15, spaceEdgeInsets: UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15))
         
     }
     
-    func setNavLeftTypeClose(){
+    open func setNavLeftTypeClose(){
         self.setNavLeftButton(imageString: "", spaceEdgeInsets:UIEdgeInsets(top: 13, left: 13, bottom: 13, right: 13) , imageSize: CGSize(width: 18, height: 18))
     }
     
-    func setNavTitle(title:String = "",font:UIFont = "17px_bold".font,color:UIColor = UIColor.black,numberOfLine:Int = 1,fontFitWidth:Bool = false,textAlignment:NSTextAlignment = .center){
+    open func setNavTitle(title:String = "",font:UIFont = "17px_bold".font,color:UIColor = UIColor.black,numberOfLine:Int = 1,fontFitWidth:Bool = false,textAlignment:NSTextAlignment = .center){
         self.titleLabel?.text = title
         self.titleLabel?.font = font
         self.titleLabel?.textColor = color
@@ -173,12 +173,12 @@ class KMNavBar: KMView {
         }
     }
     
-    func setSeparator(hidden:Bool,color:UIColor = "#EDEDED".color){
+    open func setSeparator(hidden:Bool,color:UIColor = "#EDEDED".color){
         self.separator.isHidden = hidden
         self.separator.backgroundColor = color
     }
     
-    func setNavLeftButton(title:String = "",selectedTitle:String = "",imageString:String = "",selectedImageString:String = "",font:UIFont = "15px_bold".font,color:UIColor = UIColor.black,selectedTitleColor:UIColor = UIColor.black,imagePositionType:KMNavButtonType = .left,titleImageSpec:CGFloat = 0,spaceEdgeInsets:UIEdgeInsets = .zero,maxWidth:CGFloat? = nil,imageSize:CGSize? = nil){
+    open func setNavLeftButton(title:String = "",selectedTitle:String = "",imageString:String = "",selectedImageString:String = "",font:UIFont = "15px_bold".font,color:UIColor = UIColor.black,selectedTitleColor:UIColor = UIColor.black,imagePositionType:KMNavButtonType = .left,titleImageSpec:CGFloat = 0,spaceEdgeInsets:UIEdgeInsets = .zero,maxWidth:CGFloat? = nil,imageSize:CGSize? = nil){
         
         if title.isEmpty && imageString.isEmpty {
             self.leftButton.isHidden = true
@@ -212,7 +212,7 @@ class KMNavBar: KMView {
         
     }
     
-    func setNavRightButton(title:String = "",selectedTitle:String = "",imageString:String = "",selectedImageString:String = "",font:UIFont = "15px_bold".font,color:UIColor = UIColor.black,selectedTitleColor:UIColor = UIColor.black,imagePositionType:KMNavButtonType = .left,titleImageSpec:CGFloat = 0,spaceEdgeInsets:UIEdgeInsets = .zero,maxWidth:CGFloat? = nil,imageSize:CGSize? = nil){
+    open func setNavRightButton(title:String = "",selectedTitle:String = "",imageString:String = "",selectedImageString:String = "",font:UIFont = "15px_bold".font,color:UIColor = UIColor.black,selectedTitleColor:UIColor = UIColor.black,imagePositionType:KMNavButtonType = .left,titleImageSpec:CGFloat = 0,spaceEdgeInsets:UIEdgeInsets = .zero,maxWidth:CGFloat? = nil,imageSize:CGSize? = nil){
         
         if title.isEmpty && imageString.isEmpty {
             self.rightButton.isHidden = true
@@ -247,30 +247,30 @@ class KMNavBar: KMView {
         
     }
     
-    func setNavBarColor(color:UIColor = UIColor.white){
+    open func setNavBarColor(color:UIColor = UIColor.white){
         self.navBGView?.backgroundColor = color
     }
     
-    func setNavigationViewColor(color:UIColor = UIColor.white){
+    open func setNavigationViewColor(color:UIColor = UIColor.white){
         self.navigationView?.backgroundColor = color
     }
     
-    func setNavStatusAndBgImage(statusColor:UIColor = UIColor.clear,imageString:String = ""){
+    open func setNavStatusAndBgImage(statusColor:UIColor = UIColor.clear,imageString:String = ""){
         self.statusBarView?.backgroundColor = statusColor
         if !imageString.isEmpty {
             self.backgroundImageView?.image = imageString.image
         }
     }
     
-    @objc func handleLeftButtonClick(){
+    @objc open func handleLeftButtonClick(){
         self.delegate?.KM_navBarLeftButtonClicked?(sender: self.leftButton)
     }
     
-    @objc func handleTitleControlClick(){
+    @objc open func handleTitleControlClick(){
         self.delegate?.KM_navBarTitleControlClicked?(sender: self.titleControl)
     }
     
-    @objc func handleRightButtonClick(){
+    @objc open func handleRightButtonClick(){
         self.delegate?.KM_navBarRightButtonClicked?(sender: self.rightButton)
     }
     

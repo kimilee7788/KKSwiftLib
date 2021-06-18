@@ -8,19 +8,19 @@ import Foundation
 import UIKit
 import EmptyStateKit
 
-class KMCollectionViewController: KMBaseViewController,KMCustomLayoutDelegate, UICollectionViewDelegate, UICollectionViewDataSource {
+open class KMCollectionViewController: KMBaseViewController,KMCustomLayoutDelegate, UICollectionViewDelegate, UICollectionViewDataSource {
     
-    var nodata = MainState.noInternet
-    var noSearch = MainState.noSearch
-    var dataArray:Array<Any> = []
-    var collectionView:KMCollectionView?
-    var layout:KMCustomLayout?
-    override func viewDidLoad() {
+    open var nodata = MainState.noInternet
+    open var noSearch = MainState.noSearch
+    open var dataArray:Array<Any> = []
+    open var collectionView:KMCollectionView?
+    open var layout:KMCustomLayout?
+    open override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
     
-    override func loadView() {
+    open override func loadView() {
         super.loadView()
         self.layout = KMCustomLayout.init(style: .KMLayoutVerticalEqualWidth)
         self.layout?.delegate = self
@@ -61,7 +61,7 @@ class KMCollectionViewController: KMBaseViewController,KMCustomLayoutDelegate, U
         
     }
 
-    override func KM_layoutConstraints() {
+    open override func KM_layoutConstraints() {
         super.KM_layoutConstraints()
         self.collectionView?.snp.makeConstraints { (make) in
             make.bottom.left.right.equalToSuperview()
@@ -73,27 +73,27 @@ class KMCollectionViewController: KMBaseViewController,KMCustomLayoutDelegate, U
         }
     }
 
-    func KM_customLayoutSizeForFooter(layout: KMCustomLayout, section: Int) -> CGSize {
+    open func KM_customLayoutSizeForFooter(layout: KMCustomLayout, section: Int) -> CGSize {
         return .zero
     }
     
-    func KM_customLayoutSizeForHeader(layout: KMCustomLayout, section: Int) -> CGSize {
+    open func KM_customLayoutSizeForHeader(layout: KMCustomLayout, section: Int) -> CGSize {
         return .zero
     }
     
-    func KM_customLayoutSizeforItem(layout: KMCustomLayout, indexPath: IndexPath) -> CGSize {
+    open func KM_customLayoutSizeforItem(layout: KMCustomLayout, indexPath: IndexPath) -> CGSize {
         return .zero
     }
     
-    func KM_registerCollectionViewCell(_ collectionView:UICollectionView){
+    open func KM_registerCollectionViewCell(_ collectionView:UICollectionView){
         
     }
     
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
+    open func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    open func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         let count  = self.dataArray.count
         
@@ -106,24 +106,24 @@ class KMCollectionViewController: KMBaseViewController,KMCustomLayoutDelegate, U
         return count
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    open func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         abort()
     }
     
-    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+    open func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         cell.setNeedsLayout()
         cell.layoutIfNeeded()
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    open func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
     }
     
-    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+    open func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         
     }
     
-    func updateLayout(customLayout:KMCustomLayout){
+    open func updateLayout(customLayout:KMCustomLayout){
         if self.collectionView != nil {
             self.collectionView!.collectionViewLayout = customLayout
         }

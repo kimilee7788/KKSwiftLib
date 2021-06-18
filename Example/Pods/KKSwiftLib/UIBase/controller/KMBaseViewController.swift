@@ -8,26 +8,26 @@
 import Foundation
 import EmptyStateKit
 
-class KMBaseViewController: UIViewController,KMNavBarDelegate{
+open class KMBaseViewController: UIViewController,KMNavBarDelegate{
     
     deinit {
         print(NSStringFromClass(object_getClass(self) ?? KMBaseViewController.self)+"dealloc")
     }
     
-    weak var navBar:KMNavBar?
+    open weak var navBar:KMNavBar?
     
-    override func viewDidLoad() {
+    open override func viewDidLoad() {
         super.viewDidLoad()
         self.KM_loadNavigationBar()
         self.KM_loadViews()
         self.KM_layoutConstraints()
     }
     
-    override var prefersStatusBarHidden: Bool{
+    open override var prefersStatusBarHidden: Bool{
         return false
     }
     
-    func KM_loadNavigationBar(){
+    open func KM_loadNavigationBar(){
         let v = KMNavBar.init()
         v.delegate = self
         v.setNavTitle(title: self.title ?? "")
@@ -40,7 +40,6 @@ class KMBaseViewController: UIViewController,KMNavBarDelegate{
             if #available(iOS 13.0, *){
                 
                 if self.navigationController != nil{
-                    
                     if self.navigationController?.modalPresentationStyle.rawValue != 0{
                         isfullScreen = false
                     }else{
@@ -76,35 +75,36 @@ class KMBaseViewController: UIViewController,KMNavBarDelegate{
             })
         }
     }
-    func popGestureEnabled() -> Bool{
+    open func popGestureEnabled() -> Bool{
         return true
     }
     
-    override var preferredStatusBarStyle: UIStatusBarStyle{
+    open override var preferredStatusBarStyle: UIStatusBarStyle{
         return .default
     }
     
-    func KM_loadViews(){
+    open func KM_loadViews(){
         self.view.backgroundColor = UIColor.white
     }
-    func KM_layoutConstraints(){
+    
+    open func KM_layoutConstraints(){
         
     }
-    override func viewWillDisappear(_ animated: Bool) {
+    open override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.view.endEditing(true)
     }
     
-    func KM_navBarLeftButtonClicked(sender: KMNavButton?) {
+    open func KM_navBarLeftButtonClicked(sender: KMNavButton?) {
         navigationServices.pop(animated: true)
         print("KM_navBarLeftButtonClicked")
     }
     
-    func KM_navBarRightButtonClicked(sender: KMNavButton?) {
+    open func KM_navBarRightButtonClicked(sender: KMNavButton?) {
         print("KM_navBarRightButtonClicked")
     }
     
-    func KM_navBarTitleControlClicked(sender: UIControl?) {
+    open func KM_navBarTitleControlClicked(sender: UIControl?) {
         print("KM_navBarTitleControlClicked")
     }
     
@@ -114,7 +114,7 @@ class KMBaseViewController: UIViewController,KMNavBarDelegate{
 extension KMlistViewController:EmptyStateDataSource{
     
 
-    func imageForState(_ state: CustomState, inEmptyState emptyState: EmptyState) -> UIImage? {
+    open func imageForState(_ state: CustomState, inEmptyState emptyState: EmptyState) -> UIImage? {
         switch state as! MainState {
         case .noInternet: return UIImage(named: "Empty Inbox _Outline")
         case .noSearch: return UIImage(named: "Empty Inbox _Outline")
@@ -122,7 +122,7 @@ extension KMlistViewController:EmptyStateDataSource{
         }
     }
 
-    func titleForState(_ state: CustomState, inEmptyState emptyState: EmptyState) -> String? {
+    open func titleForState(_ state: CustomState, inEmptyState emptyState: EmptyState) -> String? {
         switch state as! MainState {
         case .noInternet:  return ""
         case .noSearch:  return ""
@@ -130,14 +130,14 @@ extension KMlistViewController:EmptyStateDataSource{
         }
     }
 
-    func descriptionForState(_ state: CustomState, inEmptyState emptyState: EmptyState) -> String? {
+    open func descriptionForState(_ state: CustomState, inEmptyState emptyState: EmptyState) -> String? {
         switch state as! MainState {
         case .noInternet: return "Start creating your document library"
         case .noSearch: return "Start creating your document library"
         }
     }
 
-    func titleButtonForState(_ state: CustomState, inEmptyState emptyState: EmptyState) -> String? {
+    open func titleButtonForState(_ state: CustomState, inEmptyState emptyState: EmptyState) -> String? {
         switch state as! MainState {
         case .noInternet: return ""
         case .noSearch: return ""
@@ -146,13 +146,13 @@ extension KMlistViewController:EmptyStateDataSource{
     
 }
 
-class KMlistViewController: KMBaseViewController, UITableViewDataSource ,UITableViewDelegate{
+open class KMlistViewController: KMBaseViewController, UITableViewDataSource ,UITableViewDelegate{
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.dataArray?.count ?? 0
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
        return UITableViewCell.init()
     }
     
@@ -163,7 +163,7 @@ class KMlistViewController: KMBaseViewController, UITableViewDataSource ,UITable
     var dataArray:Array<Any>?
     weak var tableView:UITableView?
     
-    override func KM_loadViews() {
+    open override func KM_loadViews() {
         super.KM_loadViews()
         do{
             let tb = UITableView.init()
@@ -177,7 +177,7 @@ class KMlistViewController: KMBaseViewController, UITableViewDataSource ,UITable
         }
     }
     
-    override func KM_layoutConstraints() {
+    open override func KM_layoutConstraints() {
         super.KM_layoutConstraints()
         self.tableView?.snp.makeConstraints({ make in
             make.top.equalTo(self.navBar!.snp.bottom)
@@ -186,9 +186,9 @@ class KMlistViewController: KMBaseViewController, UITableViewDataSource ,UITable
     }
 }
  
-class KMAlertController: UIAlertController {
+open class KMAlertController: UIAlertController {
      
-    override func viewDidLoad() {
+    override open func viewDidLoad() {
         super.viewDidLoad()
          
         //标题字体样式（红色，字体放大）
@@ -213,13 +213,13 @@ class KMAlertController: UIAlertController {
         self.setValue(messageAttribute, forKey: "attributedMessage")
     }
      
-    override func didReceiveMemoryWarning() {
+    override open func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
 }
 
 
-class KMNavigationController: UINavigationController,UIGestureRecognizerDelegate,UINavigationControllerDelegate {
+open class KMNavigationController: UINavigationController,UIGestureRecognizerDelegate,UINavigationControllerDelegate {
     var interfaceStyle:KMInterfaceStyle = .light{
         didSet{
             
@@ -238,20 +238,18 @@ class KMNavigationController: UINavigationController,UIGestureRecognizerDelegate
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
     
-    
-    
     override init(rootViewController: UIViewController) {
         
         super.init(rootViewController: rootViewController)
         self.setNavigationBarHidden(true, animated: false)
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         
         super.init(coder: aDecoder)
     }
     
-    override func viewDidLoad() {
+    open override func viewDidLoad() {
         super.viewDidLoad()
         self.interfaceStyle = .light
         self.interactivePopGestureRecognizer?.isEnabled = false
@@ -266,13 +264,11 @@ class KMNavigationController: UINavigationController,UIGestureRecognizerDelegate
         self.interactivePopGestureRecognizer?.delegate?.perform((Selector(("handleNavigationTransition:"))), with: panGesture)
         
         if panGesture.state == UIGestureRecognizer.State.began {
-            
         }
         else if panGesture.state == UIGestureRecognizer.State.ended{
-            
         }
     }
-    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+    open func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         
         if (gestureRecognizer.view == self.view && gestureRecognizer.location(in: view).x < (KMDistanceToStart == 0 ? UIScreen.main.bounds.width : KMDistanceToStart)) {
             
@@ -282,13 +278,11 @@ class KMNavigationController: UINavigationController,UIGestureRecognizerDelegate
                     return vc.popGestureEnabled()
                 }
             }
-            
-            
         }
         return false
     }
     
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+    open func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         if otherGestureRecognizer.isKind(of: NSClassFromString("UIScrollViewPanGestureRecognizer")!) || otherGestureRecognizer.isKind(of: NSClassFromString("UIPanGestureRecognizer")!) || otherGestureRecognizer.isKind(of: NSClassFromString("UIScrollViewPagingSwipeGestureRecognizer")!) {
             let aView = otherGestureRecognizer.view
             if aView!.isKind(of: UIScrollView.self) {
@@ -306,11 +300,12 @@ class KMNavigationController: UINavigationController,UIGestureRecognizerDelegate
     }
     
     //MARK: UINavigationControllerDelegate
-    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+    open func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
         print(viewController.self)
         
     }
-    func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
+    
+    open func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
         print(viewController.self)
     }
 }

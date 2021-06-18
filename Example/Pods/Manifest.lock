@@ -3,7 +3,7 @@ PODS:
   - EFMarkdown (5.0.0):
     - EFCMark (= 0.0.2)
   - EmptyStateKit (1.1.0)
-  - KKSwiftLib (0.1.1):
+  - KKSwiftLib (0.1.3):
     - EFMarkdown
     - EmptyStateKit
     - SnapKit
@@ -24,7 +24,7 @@ SPEC CHECKSUMS:
   EFCMark: 78fb32ed4107c8efc640ad9d20ac31cd44ce2046
   EFMarkdown: 915ff03080b95efcc737650991397322d661f1d9
   EmptyStateKit: dc41e9ce5c6089f67a49d063bce73ade9f2ba73f
-  KKSwiftLib: 266e7ecbf6be26f589d4515c7d62156409fcbe38
+  KKSwiftLib: 1e77d83b16fa283342f9ef7773831006171b5b19
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
 
 PODFILE CHECKSUM: 6a6b91b7665745c76cff2cb686fe2bf69480d0ee

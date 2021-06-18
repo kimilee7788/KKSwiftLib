@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class KMView: UIView {
+open class KMView: UIView {
     
     func layoutView(){
     }
@@ -22,26 +22,26 @@ class KMView: UIView {
         self.layoutView()
     }
     
-    required init?(coder: NSCoder) {
+    required public init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 }
 
 
-class KMLabel: UILabel {
-    required init?(coder: NSCoder) {
+open class KMLabel: UILabel {
+    required public init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 }
 
-enum KMButtonEdgeInsetsStyle {
+public enum KMButtonEdgeInsetsStyle {
     case KMButtonTop
     case KMButtonLeft
     case KMButtonRight
     case KMButtonBottom
 }
 
-extension UIButton {
+public extension UIButton {
 
     func layoutButton(style: KMButtonEdgeInsetsStyle, imageTitleSpace: CGFloat) {
         //得到imageView和titleLabel的宽高
@@ -97,7 +97,7 @@ public enum KMNavButtonType {
     case left //图片在左 标题在右
     case right //图片在右。标题在左
 }
-class KMNavButton: KMControl {
+public class KMNavButton: KMControl{
 
     
     var navButtonSelected:Bool = false{
@@ -292,7 +292,7 @@ class KMNavButton: KMControl {
     }
 }
 
-class KMControl: UIControl {
+open class KMControl: UIControl {
     func loadViews() {
         self.translatesAutoresizingMaskIntoConstraints = false
         self.backgroundColor = UIColor.clear
@@ -306,13 +306,13 @@ class KMControl: UIControl {
         self.layoutView()
     }
     
-    required init?(coder: NSCoder) {
+    required public init?(coder: NSCoder) {
         super.init(coder: coder)
     }
 
 }
 
-class KMCollectionView: UICollectionView {
+open class KMCollectionView: UICollectionView {
     var isShouldRecognize:Bool = true
     var interfaceStyle:KMInterfaceStyle = .light{
         didSet{
@@ -336,16 +336,16 @@ class KMCollectionView: UICollectionView {
         interfaceStyle = .light
     }
     func KM_layoutConstraints(){}
-    required init?(coder: NSCoder) {
+    required public init?(coder: NSCoder) {
         
         super.init(coder: coder)
     }
-    override func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+    open override func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         return self.isShouldRecognize
     }
 }
 
-class KMCollectionViewCell: UICollectionViewCell {
+open class KMCollectionViewCell: UICollectionViewCell {
     
     var interfaceStyle:KMInterfaceStyle = .light{
         didSet{
@@ -364,7 +364,7 @@ class KMCollectionViewCell: UICollectionViewCell {
         self.KM_layoutConstraints()
     }
     
-    required init?(coder: NSCoder) {
+    required public init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     func KM_loadViews(){
@@ -373,7 +373,7 @@ class KMCollectionViewCell: UICollectionViewCell {
     func KM_layoutConstraints(){}
 }
 
-class KMTableViewCell: UITableViewCell {
+open class KMTableViewCell: UITableViewCell {
     
     var interfaceStyle:KMInterfaceStyle = .light{
         didSet{
@@ -394,7 +394,7 @@ class KMTableViewCell: UITableViewCell {
         self.KM_layoutConstraints()
     }
     
-    required init?(coder: NSCoder) {
+    required public init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     func KM_loadViews(){
@@ -404,12 +404,12 @@ class KMTableViewCell: UITableViewCell {
 }
 
 
-enum KMBarButtonType {
+public enum KMBarButtonType {
     case KMBarButtonType_Image
     case KMBarButtonType_Circle
 }
 
-class KMBarModel{
+open class KMBarModel{
     
    convenience init(title:String,image:String) {
         self.init()
@@ -417,22 +417,22 @@ class KMBarModel{
         self.image = image
     }
 
-    var title:String?
-    var image:String?
-    var color:UIColor = UIColor.red
-    var isWhite = false
-    var isShowBorder = false
+    open var  title:String?
+    open var image:String?
+    open var color:UIColor = UIColor.red
+    open var isWhite = false
+    open var isShowBorder = false
 
-    var w = 40
+    open var w = 40
     
-    var type:KMBarButtonType = .KMBarButtonType_Image
+    open var type:KMBarButtonType = .KMBarButtonType_Image
 }
 
-@objc protocol KMBarViewProtocol {
+ @objc protocol KMBarViewProtocol {
   func clickBarButton(button:UIButton);
 }
 
-class KMBarView:KMView {
+open class KMBarView:KMView {
     
     weak var scrollView:UIScrollView?
     
@@ -443,7 +443,7 @@ class KMBarView:KMView {
     var barData:Array<KMBarModel> = []
     var coustomView:KMView?
 
-    override func loadView() {
+    override open func loadView() {
         super.loadView()
         do{
             let scroll = UIScrollView.init(frame:self.frame)
@@ -458,7 +458,7 @@ class KMBarView:KMView {
         }
     }
     
-    func reSetView() {
+    open func reSetView() {
         
         for view in self.subviews {
             if view is UIScrollView{
@@ -530,7 +530,7 @@ class KMBarView:KMView {
         super.layoutView()
     }
     
-    @objc func barButtonClick(btn:UIButton){
+    @objc open func barButtonClick(btn:UIButton){
         self.delegate?.clickBarButton(button: btn)
     }
 }

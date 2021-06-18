@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import CommonCrypto
 import MessageUI
-extension String{
+public extension String{
     
      var font : UIFont{
         return KMResourceManager.sharedManager().fontWithKey(fontKey: self)
@@ -150,7 +150,7 @@ extension String{
 }
 
 
-class KMResourceManager: NSObject {
+public class KMResourceManager: NSObject {
     private override init() {
         super .init()
     }
@@ -274,7 +274,7 @@ class KMResourceManager: NSObject {
     
 }
 
-class UIViewUtil {
+public class UIViewUtil {
     static func corner(view:UIView, byRoundingCorners corners: UIRectCorner, radii: CGFloat){
         let maskPath = UIBezierPath(roundedRect: view.bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: radii, height: radii))
         let maskLayer = CAShapeLayer()
@@ -284,7 +284,7 @@ class UIViewUtil {
     }
 }
 
-class KMSystemShareUtil {
+public class KMSystemShareUtil {
     static func toSystemShare(images:Array<Any>,controller:UIViewController,handler:UIActivityViewController.CompletionWithItemsHandler?){
         let activityVC = UIActivityViewController.init(activityItems: images, applicationActivities:nil)
         activityVC.excludedActivityTypes = [.mail,.message,.airDrop,.postToFacebook]
@@ -294,7 +294,7 @@ class KMSystemShareUtil {
 }
 
 
-class KMMailUtil {
+public class KMMailUtil {
     
     static func sendMail(images:Array<UIImage>){
         
@@ -306,7 +306,7 @@ class KMMailUtil {
 }
 
 
-class KMPrintUtil{
+public class KMPrintUtil{
     
     static func printText(url:URL,delegate:UIPrintInteractionControllerDelegate?){
         let printer = UIPrintInteractionController.init()

@@ -16,7 +16,25 @@
     "tag": "0.1.0"
   },
   "platforms": {
-    "ios": "9.0"
+    "ios": "11.0"
   },
-  "source_files": "KKSwiftLib/Classes/**/*"
+  "swift_versions": "5.0",
+  "source_files": "KKSwiftLib/Classes/**/*",
+  "frameworks": [
+    "UIKit",
+    "QuartzCore",
+    "CoreMedia"
+  ],
+  "dependencies": {
+    "EmptyStateKit": [
+
+    ],
+    "EFMarkdown": [
+
+    ],
+    "SnapKit": [
+
+    ]
+  },
+  "swift_version": "5.0"
 }

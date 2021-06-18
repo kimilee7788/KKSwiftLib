@@ -7,20 +7,20 @@
 
 import Foundation
 import EFMarkdown
-public class KMMarkdownViewController: KMBaseViewController {
+open class KMMarkdownViewController: KMBaseViewController {
     var markdownView:EFMarkdownView?
     
-    override func KM_loadNavigationBar() {
+    open override func KM_loadNavigationBar() {
         super.KM_loadNavigationBar()
         self.navBar?.setNavLeftButton(imageString: "BACK", spaceEdgeInsets: UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 0), imageSize: CGSize(width: 17, height: 17))
         self.navBar?.setNavBarColor(color: .white)
     }
     
-    override func KM_navBarLeftButtonClicked(sender: KMNavButton?) {
+    open override func KM_navBarLeftButtonClicked(sender: KMNavButton?) {
         navigationServices.pop(animated: true)
     }
     
-    override func KM_loadViews() {
+    open override func KM_loadViews() {
         super.KM_loadViews()
         do{
             // 1. EFMarkdown
@@ -41,7 +41,7 @@ public class KMMarkdownViewController: KMBaseViewController {
         }
     }
 
-    override func KM_layoutConstraints() {
+    open override func KM_layoutConstraints() {
         super.KM_layoutConstraints()
         self.markdownView?.snp.makeConstraints({ make in
             make.top.equalTo(self.navBar!.snp.bottom)
@@ -49,7 +49,7 @@ public class KMMarkdownViewController: KMBaseViewController {
         })
     }
     
-    public func testMarkdownFileContent() -> String {
+    open func testMarkdownFileContent() -> String {
         if let templateURL = Bundle.main.url(forResource: "FAQ", withExtension: "md") {
             do {
                 return try String(contentsOf: templateURL, encoding: String.Encoding.utf8)

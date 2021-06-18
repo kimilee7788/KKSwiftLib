@@ -8,7 +8,7 @@
 import Foundation
 import EmptyStateKit
 
-public class KMBaseViewController: UIViewController,KMNavBarDelegate{
+class KMBaseViewController: UIViewController,KMNavBarDelegate{
     
     deinit {
         print(NSStringFromClass(object_getClass(self) ?? KMBaseViewController.self)+"dealloc")
@@ -16,14 +16,14 @@ public class KMBaseViewController: UIViewController,KMNavBarDelegate{
     
     weak var navBar:KMNavBar?
     
-    public override func viewDidLoad() {
+    override func viewDidLoad() {
         super.viewDidLoad()
         self.KM_loadNavigationBar()
         self.KM_loadViews()
         self.KM_layoutConstraints()
     }
     
-    public override var prefersStatusBarHidden: Bool{
+    override var prefersStatusBarHidden: Bool{
         return false
     }
     
@@ -40,6 +40,7 @@ public class KMBaseViewController: UIViewController,KMNavBarDelegate{
             if #available(iOS 13.0, *){
                 
                 if self.navigationController != nil{
+                    
                     if self.navigationController?.modalPresentationStyle.rawValue != 0{
                         isfullScreen = false
                     }else{
@@ -79,7 +80,7 @@ public class KMBaseViewController: UIViewController,KMNavBarDelegate{
         return true
     }
     
-    public override var preferredStatusBarStyle: UIStatusBarStyle{
+    override var preferredStatusBarStyle: UIStatusBarStyle{
         return .default
     }
     
@@ -89,7 +90,7 @@ public class KMBaseViewController: UIViewController,KMNavBarDelegate{
     func KM_layoutConstraints(){
         
     }
-    public override func viewWillDisappear(_ animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.view.endEditing(true)
     }

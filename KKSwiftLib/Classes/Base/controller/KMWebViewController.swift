@@ -9,22 +9,22 @@ import Foundation
 import WebKit
 import SnapKit
 
-public class KMWebViewController: KMBaseViewController {
+open class KMWebViewController: KMBaseViewController {
     
     var webView:WKWebView?
     var url:String?
     
-    override func KM_loadNavigationBar() {
+    open override func KM_loadNavigationBar() {
         super.KM_loadNavigationBar()
         self.navBar?.setNavLeftButton(imageString: "BACK", spaceEdgeInsets: UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 0), imageSize: CGSize(width: 17, height: 17))
         self.navBar?.setNavBarColor(color: .white)
     }
     
-    override func KM_navBarLeftButtonClicked(sender: KMNavButton?) {
+    open override func KM_navBarLeftButtonClicked(sender: KMNavButton?) {
         navigationServices.pop(animated: true)
     }
     
-    override func KM_loadViews() {
+    open override func KM_loadViews() {
         super.KM_loadViews()
         do{
             let view = WKWebView.init()
@@ -34,11 +34,11 @@ public class KMWebViewController: KMBaseViewController {
         }
     }
     
-    override func KM_layoutConstraints() {
+    open override func KM_layoutConstraints() {
         super.KM_layoutConstraints()
     }
     
-    override func viewDidLoad() {
+    open override func viewDidLoad() {
         super.viewDidLoad()
         webView?.snp.makeConstraints({ make in
             make.top.equalTo(self.navBar!.snp.bottom)

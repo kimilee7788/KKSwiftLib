@@ -16,7 +16,7 @@ import UIKit
 }
 
 
-public class KMNavBar: KMView {
+class KMNavBar: KMView {
     
   weak var delegate:(KMNavBarDelegate)?
 

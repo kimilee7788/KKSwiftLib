@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-public class KMView: UIView {
+class KMView: UIView {
     
     func layoutView(){
     }

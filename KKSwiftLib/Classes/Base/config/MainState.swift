@@ -9,19 +9,19 @@
 import UIKit
 import EmptyStateKit
 
-enum MainState: CustomState {
+public enum MainState: CustomState {
     
     case noInternet
     case noSearch
 
-    var image: UIImage? {
+    public var image: UIImage? {
         switch self {
         case .noInternet: return UIImage(named: "Empty Inbox _Outline")
         case .noSearch: return UIImage(named: "Search Engine_Outline")
         }
     }
     
-    var title: String? {
+    public var title: String? {
         switch self {
         case .noInternet: return ""
         case .noSearch: return ""
@@ -29,7 +29,7 @@ enum MainState: CustomState {
         }
     }
     
-    var description: String? {
+    public var description: String? {
         switch self {
         case .noInternet: return "Start creating your document library".language
         case .noSearch: return "No results found".language
@@ -37,7 +37,7 @@ enum MainState: CustomState {
         }
     }
     
-    var titleButton: String? {
+    public var titleButton: String? {
         switch self {
          case .noInternet: return nil
         case .noSearch: return nil

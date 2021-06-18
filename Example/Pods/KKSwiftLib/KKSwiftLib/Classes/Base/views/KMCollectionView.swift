@@ -29,7 +29,7 @@ public enum KMLayoutStyle : Int{
     @objc optional func KM_customLayoutWithEdgeInset(layout:KMCustomLayout) -> UIEdgeInsets
     
 }
-public class KMCustomLayout: UICollectionViewLayout {
+class KMCustomLayout: UICollectionViewLayout {
     var layoutStyle:KMLayoutStyle
     //存放所有cell
     var attributes = [UICollectionViewLayoutAttributes]()
@@ -68,7 +68,7 @@ public class KMCustomLayout: UICollectionViewLayout {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    public override func prepare() {
+    override func prepare() {
         super.prepare()
         
         if self.layoutStyle == .KMLayoutVerticalEqualWidth {
@@ -117,10 +117,10 @@ public class KMCustomLayout: UICollectionViewLayout {
         }
     }
     
-    public override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+    override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         return self.attributes
     }
-    public override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+    override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
         let attrs = UICollectionViewLayoutAttributes.init(forCellWith: indexPath)
         
         if self.layoutStyle == .KMLayoutVerticalEqualWidth {
@@ -133,7 +133,7 @@ public class KMCustomLayout: UICollectionViewLayout {
         return attrs
     }
     
-    public override func layoutAttributesForSupplementaryView(ofKind elementKind: String, at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+    override func layoutAttributesForSupplementaryView(ofKind elementKind: String, at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
         var attrs:UICollectionViewLayoutAttributes?
         if  elementKind == UICollectionView.elementKindSectionHeader {
             attrs = UICollectionViewLayoutAttributes.init(forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, with: indexPath)
@@ -145,7 +145,7 @@ public class KMCustomLayout: UICollectionViewLayout {
         return attrs
     }
     
-    public override var collectionViewContentSize: CGSize{
+    override var collectionViewContentSize: CGSize{
         if self.layoutStyle == .KMLayoutVerticalEqualWidth {
             return CGSize(width: 0, height: self.maxColumnHeight + self.edgesInsets().bottom)
         }else if self.layoutStyle == .KMLayoutHorizontalEqualWeight{

@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-public let navigationServices = YHNavigationService.sharedManager().navigationServices
+let navigationServices = YHNavigationService.sharedManager().navigationServices
 
 //extension NSObject {
 //    class var navigationServices: YHNavigationControllerServices {
@@ -16,7 +16,7 @@ public let navigationServices = YHNavigationService.sharedManager().navigationSe
 //    }
 //
 //}
-public class YHNavigationService: NSObject {
+class YHNavigationService: NSObject {
     
     private override init() {
         super .init()
@@ -32,7 +32,7 @@ public class YHNavigationService: NSObject {
     }
 }
 
-public class YHNavigationControllerServices: NSObject {
+class YHNavigationControllerServices: NSObject {
     
     var navigationControllers:[UINavigationController] = [] {
         didSet{

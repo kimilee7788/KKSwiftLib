@@ -15,7 +15,7 @@ public enum KMLayoutStyle : Int{
     KMLayoutHorizontalEqualWeight // 横向 等高不等宽 不支持header footer
     
 }
-public @objc protocol KMCustomLayoutDelegate:NSObjectProtocol{
+@objc public protocol KMCustomLayoutDelegate:NSObjectProtocol{
     //竖直滚动生效
     @objc func KM_customLayoutSizeforItem(layout:KMCustomLayout,indexPath:IndexPath)->CGSize
     @objc func KM_customLayoutSizeForHeader(layout:KMCustomLayout,section:Int) -> CGSize
@@ -29,7 +29,7 @@ public @objc protocol KMCustomLayoutDelegate:NSObjectProtocol{
     @objc optional func KM_customLayoutWithEdgeInset(layout:KMCustomLayout) -> UIEdgeInsets
     
 }
-public class KMCustomLayout: UICollectionViewLayout {
+open class KMCustomLayout: UICollectionViewLayout {
     var layoutStyle:KMLayoutStyle
     //存放所有cell
     var attributes = [UICollectionViewLayoutAttributes]()
@@ -43,32 +43,32 @@ public class KMCustomLayout: UICollectionViewLayout {
     var maxRowWidth:CGFloat = 0
     
     weak var delegate:(KMCustomLayoutDelegate)?
-    func columnMargin()->CGFloat{
+    open  func columnMargin()->CGFloat{
         return self.delegate?.KM_customLayoutWithColumnMargin?(layout: self) ?? 1
     }
-    func rowMargin()->CGFloat {
+    open  func rowMargin()->CGFloat {
         return self.delegate?.KM_customLayoutWithRowMargin?(layout: self) ?? 1
     }
-    func columnCount() -> CGFloat{
+    open  func columnCount() -> CGFloat{
         return self.delegate?.KM_customLayoutWithColumnCount?(layout: self) ?? 1
     }
     
-    func rowCount() -> CGFloat{
+    open func rowCount() -> CGFloat{
         return self.delegate?.KM_customLayoutWithRowCount?(layout: self) ?? 1
     }
-    func edgesInsets() -> UIEdgeInsets{
+    open func edgesInsets() -> UIEdgeInsets{
         return self.delegate?.KM_customLayoutWithEdgeInset?(layout: self) ?? UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     }
     
-    init(style:KMLayoutStyle) {
+    public init(style:KMLayoutStyle) {
         self.layoutStyle = style
         super.init()
     }
     
-    required init?(coder: NSCoder) {
+    required public init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    override func prepare() {
+    open  override func prepare() {
         super.prepare()
         
         if self.layoutStyle == .KMLayoutVerticalEqualWidth {
@@ -117,10 +117,10 @@ public class KMCustomLayout: UICollectionViewLayout {
         }
     }
     
-    override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+    public override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         return self.attributes
     }
-    override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+    public override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
         let attrs = UICollectionViewLayoutAttributes.init(forCellWith: indexPath)
         
         if self.layoutStyle == .KMLayoutVerticalEqualWidth {
@@ -133,7 +133,7 @@ public class KMCustomLayout: UICollectionViewLayout {
         return attrs
     }
     
-    override func layoutAttributesForSupplementaryView(ofKind elementKind: String, at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+    public override func layoutAttributesForSupplementaryView(ofKind elementKind: String, at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
         var attrs:UICollectionViewLayoutAttributes?
         if  elementKind == UICollectionView.elementKindSectionHeader {
             attrs = UICollectionViewLayoutAttributes.init(forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, with: indexPath)
@@ -145,7 +145,7 @@ public class KMCustomLayout: UICollectionViewLayout {
         return attrs
     }
     
-    override var collectionViewContentSize: CGSize{
+    public override var collectionViewContentSize: CGSize{
         if self.layoutStyle == .KMLayoutVerticalEqualWidth {
             return CGSize(width: 0, height: self.maxColumnHeight + self.edgesInsets().bottom)
         }else if self.layoutStyle == .KMLayoutHorizontalEqualWeight{
@@ -159,7 +159,7 @@ public class KMCustomLayout: UICollectionViewLayout {
     
     //MARK:-Help Methods
     //竖向瀑布流 item等宽不等高
-    func itemFrameOfVerticalWidth(indexPath:IndexPath) -> CGRect{
+    open func itemFrameOfVerticalWidth(indexPath:IndexPath) -> CGRect{
         let collectionW = self.collectionView?.frame.size.width ?? SCREENWIDTH
         
         let w = (collectionW - self.edgesInsets().left - self.edgesInsets().right - (self.columnCount() - 1) * self.columnMargin())/self.columnCount()
@@ -192,7 +192,7 @@ public class KMCustomLayout: UICollectionViewLayout {
     }
     //竖向瀑布流 item等高不等宽
     
-    func itemFrameOfVerticalHeight(indexPath:IndexPath) -> CGRect{
+    open func itemFrameOfVerticalHeight(indexPath:IndexPath) -> CGRect{
         let collectionW = self.collectionView?.frame.size.width ?? SCREENWIDTH
         var headViewSize = CGSize.zero
         if self.delegate?.responds(to:#selector(KMCustomLayoutDelegate.KM_customLayoutSizeForHeader(layout:section:))) ?? false {
@@ -239,7 +239,7 @@ public class KMCustomLayout: UICollectionViewLayout {
         
     }
     //横向 item等高不等宽
-    func itemFrameOfHorizontalWidth(indexPath:IndexPath) -> CGRect{
+    open func itemFrameOfHorizontalWidth(indexPath:IndexPath) -> CGRect{
         let collectionH = self.collectionView?.frame.size.height ?? SCREENHEIGHT
         let h = (collectionH - self.edgesInsets().top - self.edgesInsets().bottom - (self.rowCount() - 1) * self.rowMargin())/self.rowCount()
         
@@ -271,7 +271,7 @@ public class KMCustomLayout: UICollectionViewLayout {
         
     }
     
-    func headerViewFrameOfVertical(indexPath:IndexPath)->CGRect{
+    open func headerViewFrameOfVertical(indexPath:IndexPath)->CGRect{
         var size = CGSize.zero
         if self.delegate?.responds(to:#selector(KMCustomLayoutDelegate.KM_customLayoutSizeForHeader(layout:section:))) ?? false {
             size = self.delegate!.KM_customLayoutSizeForHeader(layout: self, section: indexPath.section)
@@ -328,7 +328,7 @@ public class KMCustomLayout: UICollectionViewLayout {
         return .zero
     }
     
-    func footerViewFrameOfVertical(indexPath:IndexPath)->CGRect{
+    open func footerViewFrameOfVertical(indexPath:IndexPath)->CGRect{
         var size:CGSize = .zero
         if self.delegate?.responds(to:#selector(KMCustomLayoutDelegate.KM_customLayoutSizeForFooter(layout:section:))) ?? false {
             size = self.delegate!.KM_customLayoutSizeForFooter(layout: self, section: indexPath.section)
@@ -361,11 +361,8 @@ public class KMCustomLayout: UICollectionViewLayout {
             self.rowWidths[0] = self.collectionView?.frame.size.width ?? SCREENWIDTH
             self.columnHeights[0] = self.maxColumnHeight
             return CGRect (x: x, y: y, width: self.collectionView?.frame.size.width ?? SCREENWIDTH, height: size.height)
-            
         }
         return .zero
-        
     }
-    
 }
 

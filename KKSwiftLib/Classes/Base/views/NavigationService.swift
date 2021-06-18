@@ -16,7 +16,7 @@ public let navigationServices = YHNavigationService.sharedManager().navigationSe
 //    }
 //
 //}
-public class YHNavigationService: NSObject {
+open class YHNavigationService: NSObject {
     
     private override init() {
         super .init()
@@ -24,7 +24,7 @@ public class YHNavigationService: NSObject {
     }
     var navigationServices = YHNavigationControllerServices()
     
-    class func sharedManager() -> YHNavigationService{
+    class public func sharedManager() -> YHNavigationService{
         struct onceManager {
             static var manager = YHNavigationService()
         }
@@ -32,7 +32,7 @@ public class YHNavigationService: NSObject {
     }
 }
 
-public class YHNavigationControllerServices: NSObject {
+open class YHNavigationControllerServices: NSObject {
     
     var navigationControllers:[UINavigationController] = [] {
         didSet{
@@ -43,33 +43,33 @@ public class YHNavigationControllerServices: NSObject {
         return self.navigationControllers.last ?? UINavigationController()
     }
     
-    func pushNavigationController(navigationController:UINavigationController){
+    open func pushNavigationController(navigationController:UINavigationController){
         if self.navigationControllers.contains(navigationController) {
             return
         }
         self.navigationControllers.append(navigationController)
     }
     
-    func popNavigationController(){
+    open func popNavigationController(){
         if self.navigationControllers.last != nil {
             self.navigationControllers.removeLast()
         }
     }
     
-    var requireNavigationController:UINavigationController{
+    open var requireNavigationController:UINavigationController{
         return self.topNavigationController
     }
     
-    var topViewController:UIViewController{
+    open var topViewController:UIViewController{
         return self.topNavigationController.topViewController ?? UIViewController()
     }
     
-    var visibleViewController:UIViewController{
+    open var visibleViewController:UIViewController{
         return self.topNavigationController.visibleViewController ?? UIViewController()
     }
     
     //MARK: - ResetRootViewController
-    func resetRootViewController(viewController:UIViewController){
+    open func resetRootViewController(viewController:UIViewController){
         if viewController is UINavigationController {
             let navigationController = viewController as! UINavigationController
             self.pushNavigationController(navigationController: navigationController)
@@ -86,29 +86,29 @@ public class YHNavigationControllerServices: NSObject {
     
     //MARK: - viewControllers
     
-    var viewControllers:[UIViewController]{
+    open var viewControllers:[UIViewController]{
         
         return self.topNavigationController.viewControllers
     }
     
-    func setViewController(viewControllers:[UIViewController],animated:Bool){
+    open func setViewController(viewControllers:[UIViewController],animated:Bool){
         self.topNavigationController.setViewControllers(viewControllers, animated: animated)
     }
     
     //MARK: - Push
     
-    func push(viewController:UIViewController,animated:Bool){
+    open func push(viewController:UIViewController,animated:Bool){
         self.topNavigationController.pushViewController(viewController, animated: animated)
     }
     
     //MARK: - 自定义Push
     
-    func push(viewController:UIViewController,animation:CATransition) {
+    open func push(viewController:UIViewController,animation:CATransition) {
         self.topNavigationController.view.layer.add(animation, forKey: nil)
         self.topNavigationController.pushViewController(viewController, animated: false)
     }
     
-    func push(viewController:UIViewController,fromViewController:UIViewController,animated:Bool){
+    open func push(viewController:UIViewController,fromViewController:UIViewController,animated:Bool){
         var vcs :[UIViewController] = []
         for controller in self.viewControllers {
             vcs.append(controller)
@@ -120,7 +120,7 @@ public class YHNavigationControllerServices: NSObject {
         self.setViewController(viewControllers: vcs, animated: animated)
     }
     
-    func push(viewController:UIViewController,excludeViewController:UIViewController,animated:Bool){
+    open func push(viewController:UIViewController,excludeViewController:UIViewController,animated:Bool){
         var vcs:[UIViewController] = []
         for controller in self.viewControllers {
             if controller .isEqual(excludeViewController) {
@@ -132,14 +132,14 @@ public class YHNavigationControllerServices: NSObject {
         self.setViewController(viewControllers: vcs, animated: animated)
     }
     
-    func pushCurrentFrom(viewController:UIViewController,animated:Bool){
+    open func pushCurrentFrom(viewController:UIViewController,animated:Bool){
         if let fromViewController = self.viewControllers.last{
             self.push(viewController: viewController, fromViewController: fromViewController, animated: animated)
         }
     }
     
     @discardableResult
-    func pushPowerful(viewController:UIViewController,animated:Bool) -> [UIViewController]{
+    open func pushPowerful(viewController:UIViewController,animated:Bool) -> [UIViewController]{
         if let displayVC = self.viewControllers.last{
             self.setViewController(viewControllers: [displayVC,viewController], animated: animated)
             self.setViewController(viewControllers: [viewController], animated: false)
@@ -148,33 +148,33 @@ public class YHNavigationControllerServices: NSObject {
         return []
     }
     
-    func show(viewController:UIViewController,sender:Any){
+    open func show(viewController:UIViewController,sender:Any){
         self.topViewController.show(viewController, sender: sender)
     }
     //MARK: - Pop
     @discardableResult
-    func pop(animated:Bool) -> UIViewController{
+    open func pop(animated:Bool) -> UIViewController{
         return self.topNavigationController.popViewController(animated: animated) ?? UIViewController.init()
     }
     
     @discardableResult
-    func pop(animation:CATransition) -> UIViewController {
+    open func pop(animation:CATransition) -> UIViewController {
         self.topNavigationController.view.layer.add(animation, forKey: nil)
         return self.topNavigationController.popViewController(animated: false) ?? UIViewController.init()
     }
     
     @discardableResult
-    func popTo(viewController:UIViewController,animated:Bool) -> [UIViewController]{
+    open func popTo(viewController:UIViewController,animated:Bool) -> [UIViewController]{
         return self.topNavigationController.popToViewController(viewController, animated: animated) ?? []
     }
     @discardableResult
-    func popToRoot(animated:Bool) -> [UIViewController]{
+    open func popToRoot(animated:Bool) -> [UIViewController]{
         return self.topNavigationController.popToRootViewController(animated: animated) ?? []
     }
     
     //MARK: - 自定义Pop
     @discardableResult
-    func popToClass(controllerClass:AnyClass, animated:Bool) -> [UIViewController]{
+    open func popToClass(controllerClass:AnyClass, animated:Bool) -> [UIViewController]{
         
         for viewController in self.viewControllers {
             if viewController.isMember(of: controllerClass) {
@@ -184,7 +184,7 @@ public class YHNavigationControllerServices: NSObject {
         return []
     }
     @discardableResult
-    func popToExternal(externalViewController:UIViewController,excludeViewController:UIViewController,animated:Bool) -> [UIViewController]{
+    open func popToExternal(externalViewController:UIViewController,excludeViewController:UIViewController,animated:Bool) -> [UIViewController]{
         var vcs:[UIViewController] = []
         for controller in self.viewControllers {
             if controller == excludeViewController {
@@ -200,7 +200,7 @@ public class YHNavigationControllerServices: NSObject {
         return self.viewControllers
     }
     @discardableResult
-    func popToExternal(externalViewController:UIViewController,toViewController:UIViewController,animated:Bool) -> [UIViewController]{
+    open func popToExternal(externalViewController:UIViewController,toViewController:UIViewController,animated:Bool) -> [UIViewController]{
         
         
         if (self.viewControllers.last != nil) {
@@ -228,7 +228,7 @@ public class YHNavigationControllerServices: NSObject {
         
     }
     @discardableResult
-    func popToPrevious(viewController:UIViewController,animated:Bool) -> [UIViewController]{
+    open func popToPrevious(viewController:UIViewController,animated:Bool) -> [UIViewController]{
         var continued = false
         for controller in self.viewControllers.reversed() {
             if controller == viewController {
@@ -242,7 +242,7 @@ public class YHNavigationControllerServices: NSObject {
         return []
     }
     @discardableResult
-    func popToPowerful(viewController:UIViewController,animated:Bool) -> [UIViewController]{
+    open func popToPowerful(viewController:UIViewController,animated:Bool) -> [UIViewController]{
         if let displayVC = self.viewControllers.last{
             self.setViewController(viewControllers: [viewController,displayVC], animated: false)
             self.setViewController(viewControllers: [viewController], animated: animated)
@@ -253,7 +253,7 @@ public class YHNavigationControllerServices: NSObject {
     
     //MARK: - Present
     
-    func present(viewController:UIViewController,animated:Bool,presentationStyle:UIModalPresentationStyle = .fullScreen, completion:@escaping ()->Void){
+    open func present(viewController:UIViewController,animated:Bool,presentationStyle:UIModalPresentationStyle = .fullScreen, completion:@escaping ()->Void){
         let presentingViewController = self.topNavigationController
         if presentationStyle == .overCurrentContext{
             presentingViewController.modalPresentationStyle = .currentContext
@@ -271,13 +271,13 @@ public class YHNavigationControllerServices: NSObject {
         }
     }
     
-    func dismiss(animated:Bool,completion:@escaping () ->Void){
+    open func dismiss(animated:Bool,completion:@escaping () ->Void){
         self .popNavigationController()
         self.topNavigationController.dismiss(animated: animated, completion: completion)
     }
     
     @discardableResult
-    func tailWithout(viewController:UIViewController) -> [UIViewController]{
+    open func tailWithout(viewController:UIViewController) -> [UIViewController]{
         var vcs:[UIViewController] = []
         
         for controller in self.viewControllers {
@@ -290,13 +290,12 @@ public class YHNavigationControllerServices: NSObject {
             vcs.removeFirst()
         }
         return vcs
-        
     }
     /**
     * 获取@viewController之前的一个控制器，如果没有则返回nil
     */
     @discardableResult
-    func previous(viewController:UIViewController) -> UIViewController{
+    open func previous(viewController:UIViewController) -> UIViewController{
         let vcidx = self.viewControllers.firstIndex(of: viewController)
         if vcidx == NSNotFound {
             abort()
@@ -307,7 +306,7 @@ public class YHNavigationControllerServices: NSObject {
         return self.viewControllers[vcidx! - 1]
     }
     
-    func tabBar(selectedIndex:Int){
+    open func tabBar(selectedIndex:Int){
         var tabVC:UITabBarController?
         for vc in navigationServices.viewControllers {
             if vc is UITabBarController{

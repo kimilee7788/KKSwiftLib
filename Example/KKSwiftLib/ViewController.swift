@@ -35,6 +35,10 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let v = KMView.init()
+        v.layoutView()
+        
         self.collectionView?.register(KMCollectionViewCell.self, forCellWithReuseIdentifier: "KMCollectionViewCell")
     }
     

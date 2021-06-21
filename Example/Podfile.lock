@@ -3,30 +3,78 @@ PODS:
   - EFMarkdown (5.0.0):
     - EFCMark (= 0.0.2)
   - EmptyStateKit (1.1.0)
-  - KKSwiftLib (0.1.3):
+  - KKSwiftLib (0.2.6):
+    - EFMarkdown
+    - EmptyStateKit
+    - KKSwiftLib/Base (= 0.2.6)
+    - KKSwiftLib/Extension (= 0.2.6)
+    - SnapKit
+  - KKSwiftLib/Base (0.2.6):
+    - EFMarkdown
+    - EmptyStateKit
+    - KKSwiftLib/Base/config (= 0.2.6)
+    - KKSwiftLib/Base/controller (= 0.2.6)
+    - KKSwiftLib/Base/views (= 0.2.6)
+    - SnapKit
+  - KKSwiftLib/Base/config (0.2.6):
+    - EFMarkdown
+    - EmptyStateKit
+    - SnapKit
+  - KKSwiftLib/Base/controller (0.2.6):
+    - EFMarkdown
+    - EmptyStateKit
+    - SnapKit
+  - KKSwiftLib/Base/views (0.2.6):
+    - EFMarkdown
+    - EmptyStateKit
+    - SnapKit
+  - KKSwiftLib/Extension (0.2.6):
+    - EFMarkdown
+    - EmptyStateKit
+    - KKSwiftLib/Extension/FoundationExtension (= 0.2.6)
+    - KKSwiftLib/Extension/Protocol (= 0.2.6)
+    - KKSwiftLib/Extension/SmallTools (= 0.2.6)
+    - KKSwiftLib/Extension/UIKitExtension (= 0.2.6)
+    - SnapKit
+  - KKSwiftLib/Extension/FoundationExtension (0.2.6):
+    - EFMarkdown
+    - EmptyStateKit
+    - SnapKit
+  - KKSwiftLib/Extension/Protocol (0.2.6):
+    - EFMarkdown
+    - EmptyStateKit
+    - SnapKit
+  - KKSwiftLib/Extension/SmallTools (0.2.6):
+    - EFMarkdown
+    - EmptyStateKit
+    - SnapKit
+  - KKSwiftLib/Extension/UIKitExtension (0.2.6):
     - EFMarkdown
     - EmptyStateKit
     - SnapKit
   - SnapKit (5.0.1)
 
 DEPENDENCIES:
-  - KKSwiftLib
+  - KKSwiftLib (from `../../KKSwiftLib`)
 
 SPEC REPOS:
   trunk:
     - EFCMark
     - EFMarkdown
     - EmptyStateKit
-    - KKSwiftLib
     - SnapKit
+
+EXTERNAL SOURCES:
+  KKSwiftLib:
+    :path: "../../KKSwiftLib"
 
 SPEC CHECKSUMS:
   EFCMark: 78fb32ed4107c8efc640ad9d20ac31cd44ce2046
   EFMarkdown: 915ff03080b95efcc737650991397322d661f1d9
   EmptyStateKit: dc41e9ce5c6089f67a49d063bce73ade9f2ba73f
-  KKSwiftLib: 1e77d83b16fa283342f9ef7773831006171b5b19
+  KKSwiftLib: eb2659644b57e52f82540a295ce3c666e769b5de
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
 
-PODFILE CHECKSUM: 6a6b91b7665745c76cff2cb686fe2bf69480d0ee
+PODFILE CHECKSUM: 0effddf8f2ba497c8adc44121f6b6cfb3de0be1b
 
 COCOAPODS: 1.10.1

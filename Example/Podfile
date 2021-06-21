@@ -3,5 +3,5 @@ use_frameworks!
 platform :ios, '11.0'
 
 target 'KKSwiftLib_Example' do
-  pod 'KKSwiftLib'
+  pod 'KKSwiftLib', :path => '../../KKSwiftLib'
 end

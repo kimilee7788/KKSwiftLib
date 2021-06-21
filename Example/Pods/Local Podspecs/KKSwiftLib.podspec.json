@@ -1,0 +1,81 @@
+{
+  "name": "KKSwiftLib",
+  "version": "0.2.6",
+  "summary": "A short description of KKSwiftLib.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/kimilee7788/KKSwiftLib",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "kimilee7788": "35053358+kimilee7788@users.noreply.github.com"
+  },
+  "source": {
+    "git": "https://github.com/kimilee7788/KKSwiftLib.git",
+    "tag": "0.2.6"
+  },
+  "platforms": {
+    "ios": "11.0"
+  },
+  "swift_versions": "5.0",
+  "frameworks": [
+    "UIKit",
+    "QuartzCore",
+    "CoreMedia"
+  ],
+  "dependencies": {
+    "EmptyStateKit": [
+
+    ],
+    "EFMarkdown": [
+
+    ],
+    "SnapKit": [
+
+    ]
+  },
+  "subspecs": [
+    {
+      "name": "Base",
+      "source_files": "KKSwiftLib/CLasses/Base",
+      "subspecs": [
+        {
+          "name": "controller",
+          "source_files": "KKSwiftLib/CLasses/Base/controller"
+        },
+        {
+          "name": "views",
+          "source_files": "KKSwiftLib/CLasses/Base/views"
+        },
+        {
+          "name": "config",
+          "source_files": "KKSwiftLib/CLasses/Base/config"
+        }
+      ]
+    },
+    {
+      "name": "Extension",
+      "source_files": "KKSwiftLib/CLasses/Extension",
+      "subspecs": [
+        {
+          "name": "Protocol",
+          "source_files": "KKSwiftLib/CLasses/Extension/Protocol"
+        },
+        {
+          "name": "FoundationExtension",
+          "source_files": "KKSwiftLib/CLasses/Extension/FoundationExtension"
+        },
+        {
+          "name": "SmallTools",
+          "source_files": "KKSwiftLib/CLasses/Extension/SmallTools"
+        },
+        {
+          "name": "UIKitExtension",
+          "source_files": "KKSwiftLib/CLasses/Extension/UIKitExtension"
+        }
+      ]
+    }
+  ],
+  "swift_version": "5.0"
+}

@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'KKSwiftLib'
-  s.version          = '0.2.3'
+  s.version          = '0.3.1'
   s.summary          = 'A short description of KKSwiftLib.'
 
 # This description is used to generate tags and improve search results.
@@ -30,28 +30,52 @@ TODO: Add long description of the pod here.
 
   s.ios.deployment_target = '11.0'
   s.swift_version = '5.0'
-  # s.source_files = 'KKSwiftLib/Classes/**/*'
 
   s.subspec 'Base' do |ss|
-  ss.subspec 'config' do |sss|
-  sss.source_files = 'KKSwiftLib/CLasses/Base/config'
+  ss.source_files = 'KKSwiftLib/CLasses/Base'
   ss.subspec 'controller' do |sss|
   sss.source_files = 'KKSwiftLib/CLasses/Base/controller'
+    end
   ss.subspec 'views' do |sss|
   sss.source_files = 'KKSwiftLib/CLasses/Base/views'
+    end
+  ss.subspec 'config' do |sss|
+  sss.source_files = 'KKSwiftLib/CLasses/Base/config'
+    end
   end
-
+  
   s.subspec 'Extension' do |ss|
-  ss.subspec 'FoundationExtension' do |sss|
-  sss.source_files = 'KKSwiftLib/CLasses/Extension/FoundationExtension'
+  ss.source_files = 'KKSwiftLib/CLasses/Extension'
   ss.subspec 'Protocol' do |sss|
   sss.source_files = 'KKSwiftLib/CLasses/Extension/Protocol'
+    end
+  ss.subspec 'FoundationExtension' do |sss|
+  sss.source_files = 'KKSwiftLib/CLasses/Extension/FoundationExtension'
+    end
   ss.subspec 'SmallTools' do |sss|
   sss.source_files = 'KKSwiftLib/CLasses/Extension/SmallTools'
+    end
   ss.subspec 'UIKitExtension' do |sss|
   sss.source_files = 'KKSwiftLib/CLasses/Extension/UIKitExtension'
+    end
   end
- 
+#  s.subspec 'controller' do |ss|
+#  ss.source_files = 'KKSwiftLib/CLasses/controller'
+#  end
+#  s.subspec 'FoundationExtension' do |ss|
+#  ss.source_files = 'KKSwiftLib/CLasses/FoundationExtension'
+#  end
+#  s.subspec 'Protocol' do |ss|
+#  ss.source_files = 'KKSwiftLib/CLasses/Protocol'
+#  end
+#  s.subspec 'SmallTools' do |ss|
+#  ss.source_files = 'KKSwiftLib/CLasses/SmallTools'
+#  end
+#  s.subspec 'UIKitExtension' do |ss|
+#  ss.source_files = 'KKSwiftLib/CLasses/UIKitExtension'
+#  end
+#  s.subspec 'views' do |ss|
+#  ss.source_files = 'KKSwiftLib/CLasses/views'
   # s.resource_bundles = {
   #   'KKSwiftLib' => ['KKSwiftLib/Assets/*.png']
   # }

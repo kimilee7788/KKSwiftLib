@@ -10,13 +10,17 @@ import UIKit
 
 open class KMView: UIView {
     
-    func layoutView(){
+    open func layoutView(){
     }
     
-    func loadView() {
+    open func loadView() {
     }
     
-    override init(frame: CGRect) {
+    public convenience init() {
+        self.init(frame: CGRect.zero)
+    }
+        
+    override public init(frame: CGRect) {
         super.init(frame: frame)
         self.loadView()
         self.layoutView()
@@ -526,7 +530,7 @@ open class KMBarView:KMView {
         }
     }
     
-    override func layoutView() {
+    public override func layoutView() {
         super.layoutView()
     }
     

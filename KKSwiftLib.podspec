@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'KKSwiftLib'
-  s.version          = '0.2.2'
+  s.version          = '0.2.3'
   s.summary          = 'A short description of KKSwiftLib.'
 
 # This description is used to generate tags and improve search results.
@@ -33,11 +33,23 @@ TODO: Add long description of the pod here.
   # s.source_files = 'KKSwiftLib/Classes/**/*'
 
   s.subspec 'Base' do |ss|
-  ss.source_files = 'KKSwiftLib/CLasses/Base'
+  ss.subspec 'config' do |sss|
+  sss.source_files = 'KKSwiftLib/CLasses/Base/config'
+  ss.subspec 'controller' do |sss|
+  sss.source_files = 'KKSwiftLib/CLasses/Base/controller'
+  ss.subspec 'views' do |sss|
+  sss.source_files = 'KKSwiftLib/CLasses/Base/views'
   end
 
   s.subspec 'Extension' do |ss|
-  ss.source_files = 'KKSwiftLib/CLasses/Extension'
+  ss.subspec 'FoundationExtension' do |sss|
+  sss.source_files = 'KKSwiftLib/CLasses/Extension/FoundationExtension'
+  ss.subspec 'Protocol' do |sss|
+  sss.source_files = 'KKSwiftLib/CLasses/Extension/Protocol'
+  ss.subspec 'SmallTools' do |sss|
+  sss.source_files = 'KKSwiftLib/CLasses/Extension/SmallTools'
+  ss.subspec 'UIKitExtension' do |sss|
+  sss.source_files = 'KKSwiftLib/CLasses/Extension/UIKitExtension'
   end
  
   # s.resource_bundles = {

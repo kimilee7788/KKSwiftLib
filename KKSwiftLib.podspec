@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'KKSwiftLib'
-  s.version          = '0.1.6'
+  s.version          = '0.2.0'
   s.summary          = 'A short description of KKSwiftLib.'
 
 # This description is used to generate tags and improve search results.
@@ -30,8 +30,14 @@ TODO: Add long description of the pod here.
 
   s.ios.deployment_target = '11.0'
   s.swift_version = '5.0'
-  s.source_files = 'KKSwiftLib/Classes/**/*'
-  
+  # s.source_files = 'KKSwiftLib/Classes/**/*'
+
+  s.subspec 'UIBase' do |ss|
+  ss.source_files = 'KKSwiftLib/CLasses/UIBase'
+
+  s.subspec 'Extesion' do |ss|
+  ss.source_files = 'KKSwiftLib/CLasses/Extesion'
+ 
   # s.resource_bundles = {
   #   'KKSwiftLib' => ['KKSwiftLib/Assets/*.png']
   # }

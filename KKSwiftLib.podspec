@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'KKSwiftLib'
-  s.version          = '0.3.1'
+  s.version          = '0.3.2'
   s.summary          = 'A short description of KKSwiftLib.'
 
 # This description is used to generate tags and improve search results.
@@ -30,35 +30,41 @@ TODO: Add long description of the pod here.
 
   s.ios.deployment_target = '11.0'
   s.swift_version = '5.0'
-
-  s.subspec 'Base' do |ss|
-  ss.source_files = 'KKSwiftLib/CLasses/Base'
-  ss.subspec 'controller' do |sss|
-  sss.source_files = 'KKSwiftLib/CLasses/Base/controller'
-    end
-  ss.subspec 'views' do |sss|
-  sss.source_files = 'KKSwiftLib/CLasses/Base/views'
-    end
-  ss.subspec 'config' do |sss|
-  sss.source_files = 'KKSwiftLib/CLasses/Base/config'
-    end
+  
+  s.subspec 'KM_Extension' do |ss|
+  s.source_files = 'KKSwiftLib/CLasses/Extension'
+#  ss.subspec 'Protocol' do |sss|
+#  sss.source_files = 'KKSwiftLib/CLasses/Extension/Protocol'
+#    end
+#  ss.subspec 'FoundationExtension' do |sss|
+#  sss.source_files = 'KKSwiftLib/CLasses/Extension/FoundationExtension'
+##  sss.dependency 'Protocol'
+#    end
+#  ss.subspec 'SmallTools' do |sss|
+#  sss.source_files = 'KKSwiftLib/CLasses/Extension/SmallTools'
+##  sss.dependency 'Protocol'
+#    end
+#  ss.subspec 'UIKitExtension' do |sss|
+#  sss.source_files = 'KKSwiftLib/CLasses/Extension/UIKitExtension'
+##  sss.dependency 'Protocol'
+#    end
+#  end
+#  s.subspec 'Base' do |ss|
+#  ss.source_files = 'KKSwiftLib/CLasses/Base'
+#  ss.subspec 'controller' do |sss|
+#  sss.source_files = 'KKSwiftLib/CLasses/Base/controller'
+#  sss.dependency 'KM_Extension'
+#    end
+#  ss.subspec 'views' do |sss|
+#  sss.source_files = 'KKSwiftLib/CLasses/Base/views'
+#  sss.dependency 'KM_Extension'
+#    end
+#  ss.subspec 'config' do |sss|
+#  sss.source_files = 'KKSwiftLib/CLasses/Base/config'
+#  sss.dependency 'KM_Extension'
+#    end
   end
   
-  s.subspec 'Extension' do |ss|
-  ss.source_files = 'KKSwiftLib/CLasses/Extension'
-  ss.subspec 'Protocol' do |sss|
-  sss.source_files = 'KKSwiftLib/CLasses/Extension/Protocol'
-    end
-  ss.subspec 'FoundationExtension' do |sss|
-  sss.source_files = 'KKSwiftLib/CLasses/Extension/FoundationExtension'
-    end
-  ss.subspec 'SmallTools' do |sss|
-  sss.source_files = 'KKSwiftLib/CLasses/Extension/SmallTools'
-    end
-  ss.subspec 'UIKitExtension' do |sss|
-  sss.source_files = 'KKSwiftLib/CLasses/Extension/UIKitExtension'
-    end
-  end
 #  s.subspec 'controller' do |ss|
 #  ss.source_files = 'KKSwiftLib/CLasses/controller'
 #  end

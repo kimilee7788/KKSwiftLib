@@ -19,6 +19,7 @@ class ViewController: UIViewController {
         super.viewDidAppear(animated)
         DispatchQueue.main.after(5) {
             self.present(sdd.init(), animated: true) {
+            
             }
         }
     }

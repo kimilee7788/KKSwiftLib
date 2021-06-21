@@ -10,6 +10,7 @@ import UIKit
 public class JKDrawSignatureView: UIView {
      
     // 公共属性
+    
     public var lineWidth: CGFloat = 2.0 {
         didSet {
             self.path.lineWidth = lineWidth

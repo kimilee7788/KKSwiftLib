@@ -18,6 +18,8 @@ public extension JKPOP where Base: UITextField {
         leftView.frame = CGRect(x: 0, y: 0, width: padding, height: base.frame.height)
         self.base.leftView = leftView
         self.base.leftViewMode = UITextField.ViewMode.always
+        self.base.rightView = leftView
+        self.base.rightViewMode = UITextField.ViewMode.always
     }
     
     // MARK: 1.2、添加左边的图片

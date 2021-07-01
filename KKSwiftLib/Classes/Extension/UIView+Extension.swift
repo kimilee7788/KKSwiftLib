@@ -9,6 +9,7 @@
 import UIKit
 import Foundation
 import CoreFoundation
+import SnapKit
 extension UIView: JKPOPCompatible {}
 // MARK:- 一、机型的判断
 /*
@@ -131,7 +132,7 @@ public var kStatusBarFrameH: CGFloat {
 // MARK: 2.4、获取导航栏的高度
 /// 获取导航栏的高度
 public let kNavFrameH: CGFloat = 44 + kStatusBarFrameH
-    
+
 // MARK: 2.5、获取tabbar的高度
 /// 获取tabbar的高度
 public var kTabbarFrameH: CGFloat { return isIPhoneX ? 83 : 49 }
@@ -410,6 +411,330 @@ extension JKPOP where Base: UIView {
         transform = CATransform3DScale(transform, x, y, 1)
         self.base.layer.transform = transform
     }
+    
+    
+    
+    class KMDragCornerView: UIView {
+        var dragType:KMDragViewType = .KMDrag_Tpye_Left
+        override init(frame: CGRect) {
+            super.init(frame: frame)
+            self.backgroundColor = UIColor.orange
+        }
+        
+        required init?(coder: NSCoder) {
+            fatalError("init(coder:) has not been implemented")
+        }
+    }
+    
+    enum KMDragViewType {
+        case KMDrag_Tpye_Left
+        case KMDrag_Tpye_Right
+        case KMDrag_Tpye_Top
+        case KMDrag_Tpye_Bottom
+        case KMDrag_Tpye_TopLeft
+        case KMDrag_Tpye_TopRight
+        case KMDrag_Tpye_BottomLeft
+        case KMDrag_Tpye_BottomRight
+    }
+    
+    enum KMDragStyle {
+        case KMDragStyleAll
+        case KMDragStyleHorizontal
+        case KMDragStyleVertical
+        case KMDragStyleSize
+        case KMDragStyleBounds
+    }
+    
+    
+    public func addSize(){
+        addVertical()
+        addHorizontal()
+    }
+    
+    // MARK: 4.7 设置4个角缩放
+    /// 设置4个角缩放
+    /// size 控制角的大小
+    /// color 角的颜色
+
+    public func addBounds(size:CGSize = CGSize.init(width: 14, height: 14),color:UIColor = UIColor.orange) {
+        
+        do{
+            let view = KMDragCornerView.init(frame: CGRect.init(x: 0, y: 0, width: size.width, height: size.height))
+            view.backgroundColor = color
+            base.addSubview(view)
+            
+            view.snp.makeConstraints { make in
+                make.size.equalTo(CGSize.init(width: 14, height: 14))
+                make.left.equalToSuperview().offset(-2)
+                make.top.equalToSuperview().offset(-2)
+            }
+            
+            view.km.addGesturePan { pan in
+                change(pan: pan, view: view)
+            }
+            view.dragType = .KMDrag_Tpye_TopLeft
+            //            self.dragTopLeftView = view
+        }
+        
+        do{
+            let view = KMDragCornerView.init(frame: CGRect.init(x: 0, y: 0, width: size.width, height: size.height))
+            view.backgroundColor = color
+            base.addSubview(view)
+            
+            view.snp.makeConstraints { make in
+                make.size.equalTo(CGSize.init(width: 14, height: 14))
+                make.right.equalToSuperview().offset(2)
+                make.top.equalToSuperview().offset(-2)
+            }
+            
+            view.km.addGesturePan { pan in
+                change(pan: pan, view: view)
+            }
+            view.dragType = .KMDrag_Tpye_TopRight
+            //            self.dragTopRightView = view
+        }
+        
+        do{
+            let view = KMDragCornerView.init(frame: CGRect.init(x: 0, y: 0, width: size.width, height: size.height))
+            view.backgroundColor = color
+            base.addSubview(view)
+            view.snp.makeConstraints { make in
+                make.size.equalTo(CGSize.init(width: 14, height: 14))
+                make.left.equalToSuperview().offset(-2)
+                make.bottom.equalToSuperview().offset(2)
+            }
+            
+            view.km.addGesturePan { pan in
+                change(pan: pan, view: view)
+            }
+            view.dragType = .KMDrag_Tpye_BottomLeft
+            //            self.dragBottomLeftView = view
+        }
+        
+        do{
+            let view = KMDragCornerView.init(frame: CGRect.init(x: 0, y: 0, width: size.width, height: size.height))
+            view.backgroundColor = color
+            base.addSubview(view)
+            view.snp.makeConstraints { make in
+                make.size.equalTo(CGSize.init(width: 14, height: 14))
+                make.right.equalToSuperview().offset(2)
+                make.bottom.equalToSuperview().offset(2)
+            }
+            
+            view.km.addGesturePan { pan in
+                change(pan: pan, view: view)
+            }
+            view.dragType = .KMDrag_Tpye_BottomRight
+            //            self.dragBottomRightView = view
+        }
+    }
+    
+    // MARK: 4.8 设置竖向缩放
+    /// 设置竖向缩放
+    /// size 控制角的大小
+    /// color 角的颜色
+    
+    public func addVertical(size:CGSize = CGSize.init(width: 14, height: 14),color:UIColor = UIColor.orange) {
+        
+        do{
+            let view = KMDragCornerView.init(frame: CGRect.init(x: 0, y: 0, width: size.width, height: size.height))
+            view.backgroundColor = color
+            view.km.addCorner(conrners: .allCorners, radius: 5)
+            base.addSubview(view)
+            
+            view.snp.makeConstraints { make in
+                make.size.equalTo(CGSize.init(width: 14, height: 14))
+                make.centerX.equalToSuperview()
+                make.top.equalToSuperview().offset(-4)
+            }
+            
+            view.km.addGesturePan { pan in
+                change(pan: pan, view: view)
+            }
+            view.dragType = .KMDrag_Tpye_Top
+            //            self.dragTopView = view
+        }
+        
+        do{
+            let view = KMDragCornerView.init(frame: CGRect.init(x: 0, y: 0, width: size.width, height: size.height))
+            view.backgroundColor = color
+            view.km.addCorner(conrners: .allCorners, radius: 5)
+            base.addSubview(view)
+            
+            view.snp.makeConstraints { make in
+                make.size.equalTo(CGSize.init(width: 14, height: 14))
+                make.centerX.equalToSuperview()
+                make.bottom.equalToSuperview().offset(4)
+            }
+            
+            view.km.addGesturePan { pan in
+                change(pan: pan, view: view)
+            }
+            view.dragType = .KMDrag_Tpye_Bottom
+            //            self.dragBottomView = view
+        }
+        
+    }
+    
+    // MARK: 4.9 设置横着向缩放
+    /// 设置横着向缩放
+    /// size 控制角的大小
+    /// color 角的颜色
+    
+    public func addHorizontal(size:CGSize = CGSize.init(width: 14, height: 14),color:UIColor = UIColor.orange) {
+        do{
+            let view = KMDragCornerView.init(frame: CGRect.init(x: 0, y: 0, width: size.width, height: size.height))
+            view.backgroundColor = color
+            view.km.addCorner(conrners: .allCorners, radius: 5)
+            base.addSubview(view)
+            view.snp.makeConstraints { make in
+                make.size.equalTo(CGSize.init(width: 14, height: 14))
+                make.centerY.equalToSuperview()
+                make.left.equalToSuperview().offset(-4)
+            }
+            view.km.addGesturePan { pan in
+                change(pan: pan, view: view)
+            }
+            view.dragType = .KMDrag_Tpye_Left
+            //            self.dragRightView = view
+        }
+        
+        do{
+            let view = KMDragCornerView.init(frame: CGRect.init(x: 0, y: 0, width: size.width, height: size.height))
+            view.backgroundColor = color
+            view.km.addCorner(conrners: .allCorners, radius: 5)
+            base.addSubview(view)
+            
+            view.snp.makeConstraints { make in
+                make.size.equalTo(CGSize.init(width: 14, height: 14))
+                make.centerY.equalToSuperview()
+                make.right.equalToSuperview().offset(4)
+            }
+            view.km.addGesturePan { pan in
+                change(pan: pan, view: view)
+            }
+            view.dragType = .KMDrag_Tpye_Right
+            //            self.dragLeftView = view
+        }
+    }
+    
+    func change(pan:UIGestureRecognizer,view:KMDragCornerView?) {
+        
+        switch view?.dragType {
+        
+        case .KMDrag_Tpye_Left:
+            
+            if let sender = pan as? UIPanGestureRecognizer, let senderView = sender.view {
+                if sender.state == .changed{
+                    let translation = sender.translation(in:senderView)
+                    let chanageWidth = max(senderView.superview!.frame.size.width - translation.x, 30)
+                    senderView.superview!.frame = CGRect.init(
+                        x: senderView.superview!.frame.origin.x + translation.x ,
+                        y: senderView.superview!.frame.origin.y,
+                        width: chanageWidth ,
+                        height: senderView.superview!.frame.size.height)
+                    sender.setTranslation(.zero, in: senderView)
+                }
+            }
+  
+            break
+            
+        case .KMDrag_Tpye_Right:
+            
+            if let sender = pan as? UIPanGestureRecognizer, let senderView = sender.view {
+                if sender.state == .changed{
+                    let translation = sender.translation(in:senderView)
+                    let chanageWidth = max(senderView.superview!.frame.size.width + translation.x, 30)
+                    senderView.superview!.frame = CGRect.init(
+                        x: senderView.superview!.frame.origin.x ,
+                        y: senderView.superview!.frame.origin.y,
+                        width:chanageWidth ,
+                        height: senderView.superview!.frame.size.height)
+                    sender.setTranslation(.zero, in: senderView)
+                }
+            }
+            break
+            
+        case .KMDrag_Tpye_Top:
+            if let sender = pan as? UIPanGestureRecognizer, let senderView = sender.view {
+                if sender.state == .changed{
+                    let translation = sender.translation(in:senderView)
+                    let chanageHeight = max(senderView.superview!.frame.size.height - translation.y, 30)
+                    senderView.superview!.frame = CGRect.init(
+                        x: senderView.superview!.frame.origin.x ,
+                        y: senderView.superview!.frame.origin.y + translation.y,
+                        width: senderView.superview!.frame.size.width,
+                        height:chanageHeight )
+                    sender.setTranslation(.zero, in: senderView)
+                }
+            }
+            break
+            
+        case .KMDrag_Tpye_Bottom:
+            if let sender = pan as? UIPanGestureRecognizer, let senderView = sender.view {
+                if sender.state == .changed{
+                    let translation = sender.translation(in:senderView)
+                    let chanageHeight = max(senderView.superview!.frame.size.height + translation.y, 30)
+                    senderView.superview!.frame = CGRect.init(
+                        x: senderView.superview!.frame.origin.x ,
+                        y: senderView.superview!.frame.origin.y,
+                        width: senderView.superview!.frame.size.width,
+                        height:chanageHeight)
+                    sender.setTranslation(.zero, in: senderView)
+                }
+            }
+            break
+            
+        case .KMDrag_Tpye_TopLeft:
+            if let sender = pan as? UIPanGestureRecognizer, let senderView = sender.view {
+                let t = sender.translation(in: senderView)
+                let vv = senderView.superview
+                let bounds = CGRect.init(
+                    x: (vv?.frame.origin.x)! + t.x,
+                    y: (vv?.frame.origin.y)! + t.y,
+                    width: (vv?.frame.size.width)! - t.x,
+                    height:(vv?.frame.size.height)! - t.y)
+                vv?.frame = bounds
+                sender.setTranslation(.zero, in: senderView)
+            }
+            break
+            
+        case .KMDrag_Tpye_TopRight:
+            
+            if let sender = pan as? UIPanGestureRecognizer, let senderView = sender.view {
+                let t = sender.translation(in: senderView)
+                let vv = senderView.superview
+                let bounds = CGRect.init(x: (vv?.frame.origin.x)!, y: (vv?.frame.origin.y)! + t.y, width: (vv?.frame.size.width)! + t.x, height:(vv?.frame.size.height)! - t.y)
+                vv?.frame = bounds
+                sender.setTranslation(.zero, in: senderView)
+            }
+            break
+            
+        case .KMDrag_Tpye_BottomLeft:
+            if let sender = pan as? UIPanGestureRecognizer, let senderView = sender.view {
+                let t = sender.translation(in: senderView)
+                let vv = senderView.superview
+                let bounds = CGRect.init(x: (vv?.frame.origin.x)! + t.x, y: (vv?.frame.origin.y)!, width: (vv?.frame.size.width)! - t.x, height:(vv?.frame.size.height)! + t.y)
+                vv?.frame = bounds
+                sender.setTranslation(.zero, in: senderView)
+            }
+            break
+            
+        case .KMDrag_Tpye_BottomRight:
+            if let sender = pan as? UIPanGestureRecognizer, let senderView = sender.view {
+                let t = sender.translation(in: senderView)
+                let vv = senderView.superview
+                let bounds = CGRect.init(x: (vv?.frame.origin.x)!,y: (vv?.frame.origin.y)!, width: (vv?.frame.size.width)! + t.x, height:(vv?.frame.size.height)! + t.y)
+                vv?.frame = bounds
+                sender.setTranslation(.zero, in: senderView)
+            }
+            break
+            
+        default:
+            break
+        }
+    }
+    
 }
 
 // MARK:- 五、关于UIView的 圆角、阴影、边框 的设置
@@ -889,7 +1214,7 @@ public extension JKPOP where Base: UIView {
             }
         }
     }
-
+    
     // MARK: 9.2、手势 - 单击
     /// 手势 - 单击
     /// - Parameter action: 事件
@@ -907,7 +1232,7 @@ public extension JKPOP where Base: UIView {
         }
         return obj
     }
-
+    
     // MARK: 9.3、手势 - 长按
     /// 手势 - 长按
     /// - Parameters:
@@ -924,11 +1249,38 @@ public extension JKPOP where Base: UIView {
         }
         return obj
     }
-      
+    
     // MARK: 9.4、手势 - 拖拽
     /// 手势 - 拖拽
     /// - Parameter action: 事件
     /// - Returns: 手势
+    @discardableResult
+    func addMoveGesturePan(_ action: @escaping RecognizerClosure) -> UIPanGestureRecognizer {
+        let obj = UIPanGestureRecognizer(target: nil, action: nil)
+        // 最大最小的手势触摸次数
+        obj.minimumNumberOfTouches = 1
+        obj.maximumNumberOfTouches = 3
+        addCommonGestureRecognizer(obj)
+        
+        obj.addAction { (recognizer) in
+            if let sender = recognizer as? UIPanGestureRecognizer, let senderView = sender.view {
+                let translate: CGPoint = sender.translation(in: senderView.superview)
+                var newCenter = CGPoint(x: senderView.center.x + translate.x, y: senderView.center.y + translate.y)
+                newCenter.y = max((senderView.frame.size.height)/2, newCenter.y)
+                newCenter.y = min((senderView.superview?.frame.size.height)! - senderView.frame.size.height/2, newCenter.y)
+                newCenter.x = max((senderView.frame.size.width)/2, newCenter.x)
+                newCenter.x = min((senderView.superview?.frame.size.width)! - senderView.frame.size.width/2, newCenter.x)
+                
+                senderView.center = newCenter
+                sender.setTranslation( .zero, in: senderView.superview)
+            }
+            
+            action(recognizer)
+            
+        }
+        return obj
+    }
+    
     @discardableResult
     func addGesturePan(_ action: @escaping RecognizerClosure) -> UIPanGestureRecognizer {
         let obj = UIPanGestureRecognizer(target: nil, action: nil)
@@ -936,18 +1288,13 @@ public extension JKPOP where Base: UIView {
         obj.minimumNumberOfTouches = 1
         obj.maximumNumberOfTouches = 3
         addCommonGestureRecognizer(obj)
-          
+        
         obj.addAction { (recognizer) in
-            if let sender = recognizer as? UIPanGestureRecognizer, let senderView = sender.view {
-                let translate: CGPoint = sender.translation(in: senderView.superview)
-                senderView.center = CGPoint(x: senderView.center.x + translate.x, y: senderView.center.y + translate.y)
-                sender.setTranslation( .zero, in: senderView.superview)
-                action(recognizer)
-            }
+            action(recognizer)
         }
         return obj
     }
-      
+    
     // MARK: 9.5、手势 - 屏幕边缘
     /// 手势 - 屏幕边缘
     /// - Parameters:
@@ -979,7 +1326,7 @@ public extension JKPOP where Base: UIView {
         }
         return obj
     }
-      
+    
     // MARK: 9.7、手势 - 清扫
     /// 手势 - 清扫
     /// - Parameters:
@@ -1011,7 +1358,7 @@ public extension JKPOP where Base: UIView {
         }
         return obj
     }
-      
+    
     // MARK: 9.9、手势 - 捏合
     /// 手势 - 捏合
     /// - Parameter action: 事件
@@ -1060,7 +1407,7 @@ public extension JKPOP where Base: UIView {
 
 // MARK:- 十、颜色渐变
 public extension JKPOP where Base : UIView {
-
+    
     // MARK: 10.1、添加渐变色图层
     /// 添加渐变色图层
     /// - Parameters:
@@ -1107,13 +1454,13 @@ public extension JKPOP where Base : UIView {
     
     // MARK: 10.2、画圆弧
     static func drawArc(arcWidth:CGFloat,
-                 strokeColor:UIColor,
-                 fillColor:UIColor?,
-                 view:UIView,
-                 radius:CGFloat,
-                 start:CGFloat,
-                 end:CGFloat,
-                 clockwise:Bool?) ->CAShapeLayer{
+                        strokeColor:UIColor,
+                        fillColor:UIColor?,
+                        view:UIView,
+                        radius:CGFloat,
+                        start:CGFloat,
+                        end:CGFloat,
+                        clockwise:Bool?) ->CAShapeLayer{
         
         let layer = CAShapeLayer.init()
         layer.lineWidth = arcWidth
@@ -1121,7 +1468,7 @@ public extension JKPOP where Base : UIView {
         layer.strokeColor = strokeColor.cgColor
         let path = UIBezierPath.init(arcCenter:view.center, radius: radius, startAngle:.pi*start, endAngle:.pi*end, clockwise:clockwise ?? false)
         layer.path = path.cgPath
-    //                layer.speed = 0.1
+        //                layer.speed = 0.1
         layer.strokeStart = 0.0
         layer.strokeEnd = 0.01
         view.layer.addSublayer(layer)

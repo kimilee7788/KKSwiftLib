@@ -14,6 +14,7 @@ public struct JKPOP<Base> {
     }
 }
 
+
 public protocol JKPOPCompatible {}
 
 public extension JKPOPCompatible {
